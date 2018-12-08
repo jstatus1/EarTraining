@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 public class change : MonoBehaviour {
 
 	// Use this for initialization
-	public void changemenuscene(string scenename)
+	
+  
+   
+
+    public void changemenuscene(string scenename)
     {
         SceneManager.LoadScene(scenename);
     }
@@ -16,8 +20,13 @@ public class change : MonoBehaviour {
         SceneManager.LoadScene(Random.Range(1, 4));
     }
 
-    public void Update()
+
+    public void randomlvl2()
     {
-        Debug.Log(SceneManager.sceneCount);
+        SceneManager.LoadScene(Random.Range(5, 8));
+        
     }
+
+  
+
 }
