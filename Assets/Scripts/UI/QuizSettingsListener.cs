@@ -28,7 +28,7 @@ namespace UI.QuizSetting
           //loop through and ask questions
           void Start()
           {
-
+              numberOfQuestions = List_Questions.Count;
               QuestionSetUp();
               SetButtons();
           }
@@ -40,13 +40,14 @@ namespace UI.QuizSetting
                 
               });
               Button_Forward.onClick.AddListener(() => {
-
+                _currentQuestionIndex++;
+                Debug.Log("clicked forward");
                 QuestionSetUp();
 
               });
               Button_Back.onClick.AddListener(()=> {
-
-                QuestionSetUp(); 
+                _currentQuestionIndex--;
+                 QuestionSetUp();
 
               });
               
@@ -60,7 +61,7 @@ namespace UI.QuizSetting
           void QuestionSetUp()
           {
               //Pull how many questions are in the list
-              numberOfQuestions = List_Questions.Count;
+              
               
 
               if(_currentQuestionIndex >= numberOfQuestions)
@@ -73,13 +74,19 @@ namespace UI.QuizSetting
                     Button_Back.gameObject.SetActive(false);
                     Button_Forward.gameObject.SetActive(true);
                 }
-             else
+              else
                 {
                     Button_Back.gameObject.SetActive(true);
                     Button_Back.gameObject.SetActive(true);
                 }
+             
+             //set all gameObject to null
+             List_Questions.ForEach(question => {
+               question.SetActive(false);
+             });
 
-              
+             //Array is zerobased
+             List_Questions[(_currentQuestionIndex - 1)].SetActive(true);
           }
           
           #region storage of data and tranfer to Quiz Manager
