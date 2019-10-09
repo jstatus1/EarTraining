@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ namespace UI.QuizSetting
           
 
           [Header("Stored Settings")]
-          [SerializeField] List<IntervalData> List_Data;
+          [SerializeField] List<IntervalDataSingle> List_Data;
           [SerializeField] TMP_Dropdown DropDown_Choices;
 
           [Header("Question Configuration")]
@@ -54,7 +55,7 @@ namespace UI.QuizSetting
 
               //TODO: Make Separate Class Called Questions with specialized child of different variations
               DropDown_Choices.onValueChanged.AddListener(delegate{
-                Managers.QuizManager.Instance.NumOfChoices = (int)(DropDown_Choices.value);
+                Managers.QuizManager.Instance.NumOfChoices = Int32.Parse(DropDown_Choices.options[DropDown_Choices.value].text);
               });
           }
 
@@ -89,9 +90,17 @@ namespace UI.QuizSetting
              List_Questions[(_currentQuestionIndex - 1)].SetActive(true);
           }
           
+
+
           #region storage of data and tranfer to Quiz Manager
 
-        //store quiz questions
+          //store quiz questions
+          //store selected intervals
+
+
+          //TODO:
+          //1. need a storage container that contains all the IntervalData_Singles and creates button elements for each single one on the second Question2 GameObject
+          //2. This is redandant for Chords, Scales, etc
 
           #endregion    
     }
