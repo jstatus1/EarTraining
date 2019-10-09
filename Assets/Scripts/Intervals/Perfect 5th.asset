@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43d3b953932ae944b1c49e8434c395e, type: 3}
+  m_Name: Perfect 5th
+  m_EditorClassIdentifier: 
+  Title_Interval: Perfect 5th
+  AudioClip_Interval: {fileID: 0}
+  AudioClip_ListInterval:
+  - {fileID: 8300000, guid: 397d6ad22564c0141940c861efaf13fc, type: 3}
+  - {fileID: 8300000, guid: a2f32c155017c6249ba27a471a73e0af, type: 3}
+  - {fileID: 8300000, guid: d6bfde1fa77994c48a59dc9d747153b4, type: 3}
+  - {fileID: 8300000, guid: f91f360bb60ce094bba0c64cc3009119, type: 3}
+  Information_Interval: 
+  Image_Interval: {fileID: 0}
