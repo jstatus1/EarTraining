@@ -20,10 +20,73 @@ namespace UI.QuizSetting
 
           [Header("Question Configuration")]
           [SerializeField] List<GameObject> List_Questions;
-
         
+          int _currentQuestionIndex = 1;
+          //count number of questions asked:
+          int numberOfQuestions = 0;
+          
+          //loop through and ask questions
+          void Start()
+          {
 
-        
+              QuestionSetUp();
+              SetButtons();
+          }
+
+          void SetButtons()
+          {
+
+              Button_Play.onClick.AddListener(() => {
+                
+              });
+              Button_Forward.onClick.AddListener(() => {
+
+                QuestionSetUp();
+
+              });
+              Button_Back.onClick.AddListener(()=> {
+
+                QuestionSetUp(); 
+
+              });
+              
+
+              //TODO: Make Separate Class Called Questions with specialized child of different variations
+              DropDown_Choices.onValueChanged.AddListener(delegate{
+                Managers.QuizManager.Instance.NumOfChoices = (int)(DropDown_Choices.value);
+              });
+          }
+
+          void QuestionSetUp()
+          {
+              //Pull how many questions are in the list
+              numberOfQuestions = List_Questions.Count;
+              
+
+              if(_currentQuestionIndex >= numberOfQuestions)
+                {
+                    Button_Back.gameObject.SetActive(true);
+                    Button_Forward.gameObject.SetActive(false);
+                }
+              else if(_currentQuestionIndex == 1)
+                {
+                    Button_Back.gameObject.SetActive(false);
+                    Button_Forward.gameObject.SetActive(true);
+                }
+             else
+                {
+                    Button_Back.gameObject.SetActive(true);
+                    Button_Back.gameObject.SetActive(true);
+                }
+
+              
+          }
+          
+          #region storage of data and tranfer to Quiz Manager
+
+        //store quiz questions
+
+          #endregion    
     }
 }
 
