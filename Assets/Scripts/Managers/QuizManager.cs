@@ -15,7 +15,7 @@ namespace Managers
         public static QuizManager Instance{get{return _instance;}}
 
         [Header("User Desired Quiz Training")]
-        public List<IntervalDataSingle> IntervalList;
+        public static List<IntervalDataSingle> IntervalList;
         public int NumOfChoices = 2;
 
         void Awake()

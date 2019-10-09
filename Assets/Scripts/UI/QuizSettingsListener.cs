@@ -21,6 +21,7 @@ namespace UI.QuizSetting
 
           [Header("Question Configuration")]
           [SerializeField] List<GameObject> List_Questions;
+          [SerializeField] List<IntervalDataSingle> List_StoreSelection;
         
           int _currentQuestionIndex = 1;
           //count number of questions asked:
@@ -101,6 +102,14 @@ namespace UI.QuizSetting
           //TODO:
           //1. need a storage container that contains all the IntervalData_Singles and creates button elements for each single one on the second Question2 GameObject
           //2. This is redandant for Chords, Scales, etc
+          //3. Check to see if amount of stored values on the List_StoreSelection
+
+
+          //<summary>stores the selected value <summary>
+           public static void addIntervalDataSingle(IntervalDataSingle intervalDataSingle)
+           {
+              //List_StoreSelection.Add(intervalDataSingle);
+           }
 
           #endregion    
     }
