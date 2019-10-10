@@ -19,18 +19,20 @@ namespace UI.IndividualButton
         void Start()
         {
             _thisToggle = this.gameObject.GetComponent<Toggle>();
+            Text_title.text = _intervalDataSingle.Title_Interval.ToUpper();
             _thisToggle.onValueChanged.AddListener(delegate{
                 if(_thisToggle.isOn)
                 {
                     this.gameObject.GetComponent<Image>().color = Color_Selected;
-                    Managers.QuizManager.IntervalList.Add(_intervalDataSingle);
+                    UI.QuizSetting.QuizSettingsListener.tester.Add(_intervalDataSingle);
                     //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Add(_intervalDataSingle);
                 }else{
                     this.gameObject.GetComponent<Image>().color = Color_UnSelected;
+                    UI.QuizSetting.QuizSettingsListener.tester.Remove(_intervalDataSingle);
                     //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Remove(_intervalDataSingle);
                 }
             });
-            Text_title.text = _intervalDataSingle.Title_Interval;
+            
         }
 
         public IntervalDataSingle getDataSingle()

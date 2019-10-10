@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+﻿
 
 namespace UI.QuizSetting
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using UnityEngine;
+    using UnityEngine.UI;
+    using TMPro;
+
     public class QuizSettingsListener : MonoBehaviour
     {
           [Header("Button Configuration")]
@@ -21,8 +24,9 @@ namespace UI.QuizSetting
 
           [Header("Question Configuration")]
           [SerializeField] List<GameObject> List_Questions;
-          [SerializeField] List<IntervalDataSingle> List_StoreSelection;
-        
+          [SerializeField] public static List<IntervalDataSingle> List_StoreSelection = new List<IntervalDataSingle>();
+          public static ObservableCollection<IntervalDataSingle> tester = new ObservableCollection<IntervalDataSingle>();
+
           int _currentQuestionIndex = 1;
           //count number of questions asked:
           int numberOfQuestions = 0;
@@ -33,6 +37,22 @@ namespace UI.QuizSetting
               numberOfQuestions = List_Questions.Count;
               QuestionSetUp();
               SetButtons();
+
+              tester.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(
+                delegate(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+                {
+                  if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+                  {
+                    Debug.Log("Added");
+                  }else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+                  {
+                    Debug.Log("Removed");
+                  }
+
+                  //ReadyGameListener.Text_Selection.text = DisplayUserSelections();
+                  Debug.Log(DisplayUserSelections());
+                }
+              );
           }
 
           void SetButtons()
@@ -42,13 +62,13 @@ namespace UI.QuizSetting
                 
               });
               Button_Forward.onClick.AddListener(() => {
-                _currentQuestionIndex++;
+                ++_currentQuestionIndex;
                 Debug.Log("clicked forward");
                 QuestionSetUp();
 
               });
               Button_Back.onClick.AddListener(()=> {
-                _currentQuestionIndex--;
+                --_currentQuestionIndex;
                  QuestionSetUp();
 
               });
@@ -66,7 +86,7 @@ namespace UI.QuizSetting
               
               
 
-              if(_currentQuestionIndex >= numberOfQuestions)
+              if(_currentQuestionIndex == numberOfQuestions)
                 {
                     Button_Back.gameObject.SetActive(true);
                     Button_Forward.gameObject.SetActive(false);
@@ -79,9 +99,9 @@ namespace UI.QuizSetting
               else
                 {
                     Button_Back.gameObject.SetActive(true);
-                    Button_Back.gameObject.SetActive(true);
+                    Button_Forward.gameObject.SetActive(true);
                 }
-             
+             Debug.Log(_currentQuestionIndex+ " "+ numberOfQuestions);
              //set all gameObject to null
              List_Questions.ForEach(question => {
                question.SetActive(false);
@@ -89,6 +109,8 @@ namespace UI.QuizSetting
 
              //Array is zerobased
              List_Questions[(_currentQuestionIndex - 1)].SetActive(true);
+
+             
           }
           
 
@@ -103,13 +125,23 @@ namespace UI.QuizSetting
           //1. need a storage container that contains all the IntervalData_Singles and creates button elements for each single one on the second Question2 GameObject
           //2. This is redandant for Chords, Scales, etc
           //3. Check to see if amount of stored values on the List_StoreSelection
+          
+          //send the names
+          public static string DisplayUserSelections()
+          {
+            string result = "";
+            foreach(IntervalDataSingle data in tester)
+            {
+              result += data.Title_Interval + ", ";
+            }
+            while(result[result.Length - 1].Equals(" ") || result[result.Length - 1].Equals(','))
+            {
+              result.Remove(result.Length - 1);
+            }
 
-
-          //<summary>stores the selected value <summary>
-           public static void addIntervalDataSingle(IntervalDataSingle intervalDataSingle)
-           {
-              //List_StoreSelection.Add(intervalDataSingle);
-           }
+            return (result == "")? "Error": result;
+          }
+          
 
           #endregion    
     }
