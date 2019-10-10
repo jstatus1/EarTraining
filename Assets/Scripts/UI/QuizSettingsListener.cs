@@ -26,7 +26,7 @@ namespace UI.QuizSetting
           [SerializeField] List<GameObject> List_Questions;
           [SerializeField] public static List<IntervalDataSingle> List_StoreSelection = new List<IntervalDataSingle>();
           public static ObservableCollection<IntervalDataSingle> tester = new ObservableCollection<IntervalDataSingle>();
-
+          [SerializeField] TMP_Text Text_SelectedDataResult;
           int _currentQuestionIndex = 1;
           //count number of questions asked:
           int numberOfQuestions = 0;
@@ -37,22 +37,9 @@ namespace UI.QuizSetting
               numberOfQuestions = List_Questions.Count;
               QuestionSetUp();
               SetButtons();
+              listenToSelections();
 
-              tester.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(
-                delegate(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-                {
-                  if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
-                  {
-                    Debug.Log("Added");
-                  }else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
-                  {
-                    Debug.Log("Removed");
-                  }
 
-                  //ReadyGameListener.Text_Selection.text = DisplayUserSelections();
-                  Debug.Log(DisplayUserSelections());
-                }
-              );
           }
 
           void SetButtons()
@@ -101,7 +88,7 @@ namespace UI.QuizSetting
                     Button_Back.gameObject.SetActive(true);
                     Button_Forward.gameObject.SetActive(true);
                 }
-             Debug.Log(_currentQuestionIndex+ " "+ numberOfQuestions);
+            
              //set all gameObject to null
              List_Questions.ForEach(question => {
                question.SetActive(false);
@@ -126,20 +113,52 @@ namespace UI.QuizSetting
           //2. This is redandant for Chords, Scales, etc
           //3. Check to see if amount of stored values on the List_StoreSelection
           
+
+          //Listen To Adding or Removing Selections
+          public void listenToSelections()
+          {
+              Text_SelectedDataResult.text = DisplayUserSelections();
+              //TODO: Abstract this part of the code away
+              //adds a listener to the list to see when things are added or removed
+              //updates the text selected
+              tester.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(
+                delegate(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+                {
+                  if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+                  {
+                    Debug.Log("Added");
+                  }else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+                  {
+                    Debug.Log("Removed");
+                  }
+
+                  //ReadyGameListener.Text_Selection.text = DisplayUserSelections();
+                  Text_SelectedDataResult.text = DisplayUserSelections();
+                }
+              );
+          }
+          
           //send the names
-          public static string DisplayUserSelections()
+          public string DisplayUserSelections()
           {
             string result = "";
             foreach(IntervalDataSingle data in tester)
             {
               result += data.Title_Interval + ", ";
             }
-            while(result[result.Length - 1].Equals(" ") || result[result.Length - 1].Equals(','))
-            {
-              result.Remove(result.Length - 1);
-            }
+            
 
-            return (result == "")? "Error": result;
+            // while(result[result.Length - 1].Equals(" ") || result[result.Length - 1].Equals(','))
+            // {
+            //   result.Remove(result.Length - 1);
+            // }
+
+            if(result == "")
+            {
+              Text_SelectedDataResult.color = Color.red;
+              return "Error, Please Select Intervals To Practice With";
+            }
+              return result;
           }
           
 

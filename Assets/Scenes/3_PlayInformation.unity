@@ -3694,6 +3694,7 @@ MonoBehaviour:
   - {fileID: 617936667}
   - {fileID: 1651099075}
   - {fileID: 1527783318}
+  Text_SelectedDataResult: {fileID: 1830760518}
 --- !u!224 &7297887772050921679
 RectTransform:
   m_ObjectHideFlags: 0
