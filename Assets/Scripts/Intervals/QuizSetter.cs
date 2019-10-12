@@ -10,14 +10,17 @@ namespace Managers
         [SerializeField] Button Button_next;
         [SerializeField] Button Button_PlaySound;
         [SerializeField] Button Button_Exit;
-        [SerializeField] AudioSource _mainAudio;
+        [SerializeField] static AudioSource _mainAudio;
         static System.Random rnd = new System.Random();
         static AudioClip dataSound;
+        string _answer;
 
         
         // Start is called before the first frame update
         void Start()
         {
+            _mainAudio = gameObject.GetComponent<AudioSource>();
+            getSetRandomDataSingle();
             SetButtons();
         }
 
@@ -27,32 +30,36 @@ namespace Managers
             
         }
 
-       public static void getSetRandomDataSingle()
+       public void getSetRandomDataSingle()
         {
             //int randomNumber = rnd.Next(QuizManager.Instance.IntervalList.Count);
             //return IntervalList[randomNumber];
-
+            
             IntervalDataSingle data =  QuizManager.Instance.getIntervalData();
+            
             if(data.AudioClip_ListInterval.Count > 1)
             {
                 int randomNumber = rnd.Next(data.AudioClip_ListInterval.Count);
                 dataSound = data.AudioClip_ListInterval[randomNumber];
+                _mainAudio.clip = dataSound;
                 //dataSound = data.AudioClip_Interval;
             }else
             {
                 dataSound = data.AudioClip_Interval;
+                _mainAudio.clip = dataSound;
             }
-            
+
+            _answer = data.Title_Interval; 
         }
 
         void SetButtons()
         {
             Button_next.onClick.AddListener(() => {
                 //go to the next slide
-                Debug.Log("Clicked");
-                LoopThroughList();
+                getSetRandomDataSingle();
             });
             Button_PlaySound.onClick.AddListener(() => {
+                
                 if(_mainAudio.clip == null)
                 {
                     getSetRandomDataSingle();
@@ -79,6 +86,9 @@ namespace Managers
             }
             return str;
         }
+
+        //generate choices
+        
         
     }
 }

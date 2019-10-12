@@ -31,10 +31,13 @@ namespace UI.QuizSetting
           int _currentQuestionIndex = 1;
           //count number of questions asked:
           int numberOfQuestions = 0;
+
+          [SerializeField]Animator animator;
           
           //loop through and ask questions
           void Start()
           {
+              
               numberOfQuestions = List_Questions.Count;
               QuestionSetUp();
               SetButtons();
@@ -169,6 +172,7 @@ namespace UI.QuizSetting
           #region transfer data to game
           void playButtonPressed()
           {
+            
             if(Managers.QuizManager.Instance.NumOfChoices == 0)
             {
               Managers.QuizManager.Instance.NumOfChoices = 2;
@@ -177,9 +181,10 @@ namespace UI.QuizSetting
             if(tester.Count == 0)
             {
               Debug.Log("Please Select more than 0 items");
+              animator.Play("Pressed_Failed");
               return;
             }
-
+            
             transferSelectionsToListManager();
 
             SceneManager.LoadScene("2_Quiz_Scene");
