@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
+using System;
 
 
 /*
@@ -15,8 +17,8 @@ namespace Managers
         public static QuizManager Instance{get{return _instance;}}
 
         [Header("User Desired Quiz Training")]
-        public static List<IntervalDataSingle> IntervalList = new List<IntervalDataSingle>();
-        public static List<string> strIntervalList = new List<string>();
+        public List<IntervalDataSingle> IntervalList = new List<IntervalDataSingle>();
+        static System.Random rnd = new System.Random();
         public int NumOfChoices = 2;
 
         void Awake()
@@ -30,7 +32,11 @@ namespace Managers
             DontDestroyOnLoad(this);
         }
 
-
+        public IntervalDataSingle getIntervalData()
+        {
+            int randomInt = rnd.Next(IntervalList.Count);
+            return IntervalList[randomInt]; 
+        }
 
     }
 

@@ -9,6 +9,7 @@ namespace UI.QuizSetting
     using UnityEngine;
     using UnityEngine.UI;
     using TMPro;
+    using UnityEngine.SceneManagement;
 
     public class QuizSettingsListener : MonoBehaviour
     {
@@ -39,14 +40,13 @@ namespace UI.QuizSetting
               SetButtons();
               listenToSelections();
 
-
           }
 
           void SetButtons()
           {
 
               Button_Play.onClick.AddListener(() => {
-                
+                playButtonPressed();
               });
               Button_Forward.onClick.AddListener(() => {
                 ++_currentQuestionIndex;
@@ -141,6 +141,7 @@ namespace UI.QuizSetting
           //send the names
           public string DisplayUserSelections()
           {
+            Text_SelectedDataResult.color = Color.green;
             string result = "";
             foreach(IntervalDataSingle data in tester)
             {
@@ -163,6 +164,36 @@ namespace UI.QuizSetting
           
 
           #endregion    
+
+
+          #region transfer data to game
+          void playButtonPressed()
+          {
+            if(Managers.QuizManager.Instance.NumOfChoices == 0)
+            {
+              Managers.QuizManager.Instance.NumOfChoices = 2;
+            }
+
+            if(tester.Count == 0)
+            {
+              Debug.Log("Please Select more than 0 items");
+              return;
+            }
+
+            transferSelectionsToListManager();
+
+            SceneManager.LoadScene("2_Quiz_Scene");
+          }
+
+          void transferSelectionsToListManager()
+          {
+            Managers.QuizManager.Instance.IntervalList.Clear();
+            foreach(IntervalDataSingle single in tester)
+            {
+              Managers.QuizManager.Instance.IntervalList.Add(single);
+            }
+          }
+          #endregion
     }
 }
 
