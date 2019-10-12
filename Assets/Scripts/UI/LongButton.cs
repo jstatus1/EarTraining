@@ -45,10 +45,7 @@ namespace UI.IndividualButton
                         onLongClick.Invoke();
 
                     Reset();
-                }else{
-                    onSingleClick.Invoke();
                 }
-
                 //Image_Fill.fillAmount = pointerDownTimer / requireHoldTime;
             }
         }

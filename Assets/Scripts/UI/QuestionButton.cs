@@ -6,8 +6,8 @@ namespace UI.IndividualButton
 {
     public class QuestionButton : LongButton
     {
-        [SerializeField] TMP_Text Text_title;
-        [SerializeField] AudioClip Sound;
+        [SerializeField] public TMP_Text Text_title;
+        [SerializeField] public AudioClip Sound;
 
         // Start is called before the first frame update
         void Start()

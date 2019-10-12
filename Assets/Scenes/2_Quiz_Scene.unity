@@ -1023,6 +1023,10 @@ MonoBehaviour:
   onLongClick:
     m_PersistentCalls:
       m_Calls: []
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  Image_Fill: {fileID: 0}
   Text_title: {fileID: 0}
   Sound: {fileID: 0}
 --- !u!114 &2294400183129854616
