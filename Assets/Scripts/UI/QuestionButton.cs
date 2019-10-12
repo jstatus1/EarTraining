@@ -11,12 +11,12 @@ namespace UI.IndividualButton
 
         // Start is called before the first frame update
         void Start()
-        {
-            
+        {   
+            onLongClick.AddListener(playSound);
         }
 
-        // Update is called once per frame
-        void Update()
+
+        void playSound()
         {
             
         }

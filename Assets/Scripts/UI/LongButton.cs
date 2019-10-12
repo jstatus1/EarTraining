@@ -14,9 +14,18 @@ namespace UI.IndividualButton
         private float requireHoldTime;
         public UnityEvent onLongClick;
 
+        public UnityEvent onSingleClick;
+
+        [SerializeField] Image Image_Fill;
+
+        void Start()
+        {
+            onLongClick = new UnityEvent();
+        }
+
         public void OnPointerDown(PointerEventData eventData)
         {
-            pointerDown = true;
+            pointerDown = true; 
         }
 
         public void OnPointerUp(PointerEventData eventData)
@@ -29,13 +38,18 @@ namespace UI.IndividualButton
             if(pointerDown)
             {
                 pointerDownTimer += Time.deltaTime;
+                Debug.Log(pointerDownTimer);
                 if(pointerDownTimer >= requireHoldTime)
                 {
                     if(onLongClick != null)
-                    onLongClick.Invoke();
+                        onLongClick.Invoke();
 
                     Reset();
+                }else{
+                    onSingleClick.Invoke();
                 }
+
+                //Image_Fill.fillAmount = pointerDownTimer / requireHoldTime;
             }
         }
 
@@ -43,6 +57,7 @@ namespace UI.IndividualButton
         {
             pointerDown = false;
             pointerDownTimer = 0;
+            //Image_Fill.fillAmount = pointerDownTimer / requireHoldTime;
         }
 
     }
