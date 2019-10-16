@@ -355,8 +355,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610268363}
-  - component: {fileID: 1610268364}
   - component: {fileID: 1610268365}
+  - component: {fileID: 1610268364}
   m_Layer: 0
   m_Name: QuizSetter
   m_TagString: Untagged
@@ -387,12 +387,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610268362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd163de844060084798eae4f54f3f541, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e732dae07a803649a560f722465e16d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Button_next: {fileID: 2068089642}
   Button_PlaySound: {fileID: 2294400183208804620}
   Button_Exit: {fileID: 2294400183143283441}
+  Button_Question: {fileID: 6823747151105268358, guid: 6deec49ace699b049910fc010e73ffc2,
+    type: 3}
+  Questions_Location: {fileID: 2294400182810743147}
 --- !u!82 &1610268365
 AudioSource:
   m_ObjectHideFlags: 0
@@ -867,7 +870,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000005364418, y: -0.000015258789}
+  m_AnchoredPosition: {x: 0.000005364418, y: 0.000030517578}
   m_SizeDelta: {x: 296, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2294400182882578056

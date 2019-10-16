@@ -37,7 +37,7 @@ namespace Managers
             int randomInt = rnd.Next(IntervalList.Count);
             return IntervalList[randomInt]; 
         }
-
+        
     }
 
 }
