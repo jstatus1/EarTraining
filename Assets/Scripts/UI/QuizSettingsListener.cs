@@ -165,10 +165,18 @@ namespace UI.QuizSetting
                 {
                   if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
                   {
-                    
+                    //var obj = Instantiate(Prefab_QuestionSelection) as GameObject;
+                    //obj.GetComponent<SelectorQuestion>().SetDataCollection = List_CategorySelection[List_CategorySelection.Count-1];
+                    foreach(DataCollection p in e.NewItems)
+                    {
+                      Debug.Log("Added: " + p.Title_Collection + "to Collection List");
+                    }
                   }else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
                   {
-                    
+                    foreach(DataCollection p in e.OldItems)
+                    {
+                      Debug.Log("Removed: " + p.Title_Collection + "from Collection List");
+                    }
                   }
 
                   //ReadyGameListener.Text_Selection.text = DisplayUserSelections();

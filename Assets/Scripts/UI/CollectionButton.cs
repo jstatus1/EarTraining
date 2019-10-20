@@ -32,7 +32,6 @@ public class CollectionButton : MonoBehaviour
         set{
             DataCollection = value;
             Title_Collection.text = DataCollection.Title_Collection;
-
         }
     }
     
