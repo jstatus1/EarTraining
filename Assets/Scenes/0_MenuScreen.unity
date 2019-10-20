@@ -1667,6 +1667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1089712214}
+  - component: {fileID: 1089712215}
   m_Layer: 0
   m_Name: Controls_MainPage
   m_TagString: Untagged
@@ -1688,6 +1689,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1089712215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089712213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03eaf1a775c6c9a4a817526ea6105028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button_EarTraining: {fileID: 1657849518}
 --- !u!1 &1237799845
 GameObject:
   m_ObjectHideFlags: 0

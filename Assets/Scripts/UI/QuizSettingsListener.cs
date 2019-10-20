@@ -25,14 +25,31 @@ namespace UI.QuizSetting
 
           [Header("Question Configuration")]
           [SerializeField] List<GameObject> List_Questions;
-          [SerializeField] public static List<DataSingle> List_StoreSelection = new List<DataSingle>();
-          public static ObservableCollection<DataSingle> tester = new ObservableCollection<DataSingle>();
+
+          ///<summary>
+          /// Stores all the User's Selection Categories
+          ///</summary>
+          [SerializeField] public static ObservableCollection<DataSingle> List_CategorySelection = new ObservableCollection<DataSingle>();
+
+          ///<summary>
+          /// Stores all the User's Selected Data Singles
+          ///</summary>
+          public static ObservableCollection<DataSingle> List_SelectedTestDataSingles = new ObservableCollection<DataSingle>();
           [SerializeField] TMP_Text Text_SelectedDataResult;
           int _currentQuestionIndex = 1;
           //count number of questions asked:
           int numberOfQuestions = 0;
 
-          [SerializeField]Animator animator;
+          [SerializeField] Animator animator;
+
+          [SerializeField] Transform Location_CategorySelection;
+
+          [SerializeField] CollectionsStorage _collectionsStorage;
+
+          void Awake()
+          {
+            
+          }
           
           //loop through and ask questions
           void Start()
@@ -43,6 +60,7 @@ namespace UI.QuizSetting
               SetButtons();
               listenToSelections();
 
+              LoadCategories();
           }
 
           void SetButtons()
@@ -68,6 +86,14 @@ namespace UI.QuizSetting
               DropDown_Choices.onValueChanged.AddListener(delegate{
                 Managers.QuizManager.Instance.NumOfChoices = Int32.Parse(DropDown_Choices.options[DropDown_Choices.value].text);
               });
+          }
+
+          void LoadCategories()
+          {
+            foreach(DataTypes type in Enum.GetValues(typeof(DataTypes)))
+            {
+              Debug.Log("Types: " + type);
+            }
           }
 
           void QuestionSetUp()
@@ -98,9 +124,7 @@ namespace UI.QuizSetting
              });
 
              //Array is zerobased
-             List_Questions[(_currentQuestionIndex - 1)].SetActive(true);
-
-             
+             List_Questions[(_currentQuestionIndex - 1)].SetActive(true);  
           }
           
 
@@ -117,6 +141,14 @@ namespace UI.QuizSetting
           //3. Check to see if amount of stored values on the List_StoreSelection
           
 
+          ///<summary>
+          /// Listen to category selections
+          ///</summary>
+          public void listenToCategorySelections()
+          {
+
+          } 
+
           //Listen To Adding or Removing Selections
           public void listenToSelections()
           {
@@ -124,7 +156,7 @@ namespace UI.QuizSetting
               //TODO: Abstract this part of the code away
               //adds a listener to the list to see when things are added or removed
               //updates the text selected
-              tester.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(
+              List_SelectedTestDataSingles.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(
                 delegate(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
                 {
                   if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
@@ -146,9 +178,9 @@ namespace UI.QuizSetting
           {
             Text_SelectedDataResult.color = Color.green;
             string result = "";
-            foreach(DataSingle data in tester)
+            foreach(DataSingle data in List_SelectedTestDataSingles)
             {
-              result += data.Title_Interval + ", ";
+              result += data.Title + ", ";
             }
             
 
@@ -178,7 +210,7 @@ namespace UI.QuizSetting
               Managers.QuizManager.Instance.NumOfChoices = 2;
             }
 
-            if(tester.Count == 0)
+            if(List_SelectedTestDataSingles.Count == 0)
             {
               Debug.Log("Please Select more than 0 items");
               animator.Play("Pressed_Failed");
@@ -193,7 +225,7 @@ namespace UI.QuizSetting
           void transferSelectionsToListManager()
           {
             Managers.QuizManager.Instance.IntervalList.Clear();
-            foreach(DataSingle single in tester)
+            foreach(DataSingle single in List_SelectedTestDataSingles)
             {
               Managers.QuizManager.Instance.IntervalList.Add(single);
             }

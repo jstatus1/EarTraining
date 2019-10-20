@@ -14,15 +14,15 @@ public enum DataTypes
     
 }
 
-[CreateAssetMenu(fileName = "Interval_Data", menuName= "ScriptableObjects/IntervalData")]
+[CreateAssetMenu(fileName = "Data Single", menuName= "ScriptableObjects/DataSingle")]
 public class DataSingle : ScriptableObject
 {
     public DataTypes DataType;
-    public string Title_Interval;
-    public AudioClip AudioClip_Interval;
-    public List<AudioClip> AudioClip_ListInterval;
-    public string Information_Interval;
-    public Image Image_Interval;
+    public string Title;
+    public AudioClip AudioClip;
+    public List<AudioClip> List_AudioClip;
+    public string Information;
+    public Image Image;
 
 
 }

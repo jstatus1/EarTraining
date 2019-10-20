@@ -50,19 +50,19 @@ public class QuizSetterV2: MonoBehaviour
             
             _ansdata =  Managers.QuizManager.Instance.getIntervalData();
             
-            if(_ansdata.AudioClip_ListInterval.Count > 1)
+            if(_ansdata.List_AudioClip.Count > 1)
             {
-                int randomNumber = rnd.Next(_ansdata.AudioClip_ListInterval.Count);
-                dataSound = _ansdata.AudioClip_ListInterval[randomNumber];
+                int randomNumber = rnd.Next(_ansdata.List_AudioClip.Count);
+                dataSound = _ansdata.List_AudioClip[randomNumber];
                 _mainAudio.clip = dataSound;
-                //dataSound = data.AudioClip_Interval;
+                //dataSound = data.AudioClip;
             }else
             {
-                dataSound = _ansdata.AudioClip_Interval;
+                dataSound = _ansdata.AudioClip;
                 //_mainAudio.clip = dataSound;
             }
 
-            _answer = _ansdata.Title_Interval; 
+            _answer = _ansdata.Title; 
     }
 
     ///<summary>
@@ -101,7 +101,7 @@ public class QuizSetterV2: MonoBehaviour
             }
             foreach(DataSingle i in  Managers.QuizManager.Instance.IntervalList)
             {
-                str += i.Title_Interval + " ";
+                str += i.Title + " ";
             }
             return str;
     }
@@ -130,7 +130,7 @@ public class QuizSetterV2: MonoBehaviour
 
         foreach(DataSingle i in answerChoices)
         {
-            Debug.Log(i.Title_Interval);
+            Debug.Log(i.Title);
         }
 
         

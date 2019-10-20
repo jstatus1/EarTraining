@@ -8,7 +8,7 @@ namespace UI.IndividualButton
 {
     public class SelectionButton : MonoBehaviour
     {
-        [SerializeField] DataSingle _intervalDataSingle;
+        [SerializeField] DataSingle DataSingle;
         [SerializeField] TMP_Text Text_title;
         Toggle _thisToggle;
 
@@ -19,17 +19,17 @@ namespace UI.IndividualButton
         void Start()
         {
             _thisToggle = this.gameObject.GetComponent<Toggle>();
-            Text_title.text = _intervalDataSingle.Title_Interval.ToUpper();
+            Text_title.text = DataSingle.Title.ToUpper();
             _thisToggle.onValueChanged.AddListener(delegate{
                 if(_thisToggle.isOn)
                 {
                     this.gameObject.GetComponent<Image>().color = Color_Selected;
-                    UI.QuizSetting.QuizSettingsListener.tester.Add(_intervalDataSingle);
-                    //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Add(_intervalDataSingle);
+                    UI.QuizSetting.QuizSettingsListener.List_SelectedTestDataSingles.Add(DataSingle);
+                    //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Add(DataSingle);
                 }else{
                     this.gameObject.GetComponent<Image>().color = Color_UnSelected;
-                    UI.QuizSetting.QuizSettingsListener.tester.Remove(_intervalDataSingle);
-                    //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Remove(_intervalDataSingle);
+                    UI.QuizSetting.QuizSettingsListener.List_SelectedTestDataSingles.Remove(DataSingle);
+                    //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Remove(DataSingle);
                 }
             });
             
@@ -37,7 +37,7 @@ namespace UI.IndividualButton
 
         public DataSingle getDataSingle()
         {
-            return _intervalDataSingle;
+            return DataSingle;
         }
 
         

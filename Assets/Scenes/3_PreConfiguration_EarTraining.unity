@@ -340,6 +340,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68662103}
   m_CullTransparentMesh: 0
+--- !u!1 &120203666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 120203668}
+  - component: {fileID: 120203667}
+  m_Layer: 0
+  m_Name: CollectionStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &120203667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120203666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf2fbff04e4f134d88006ac754e06aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListCollections: []
+--- !u!4 &120203668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120203666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1080, y: 1833.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &198307019
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,8 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 154fcc7a6796080469641283d436b490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _intervalDataSingle: {fileID: 11400000, guid: 5c9304b7c37d96f42a38ca2da7bb2996,
-    type: 2}
+  DataSingle: {fileID: 0}
   Text_title: {fileID: 1176786698}
   Color_Selected: {r: 0.15673548, g: 0.6698113, b: 0.08530616, a: 1}
   Color_UnSelected: {r: 0.98823535, g: 0.9490197, b: 0.8705883, a: 1}
@@ -1729,7 +1772,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: -4}
+  m_AnchoredPosition: {x: 126, y: -48}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1104049783
@@ -2113,7 +2156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -3.7}
+  m_AnchoredPosition: {x: -136, y: -44}
   m_SizeDelta: {x: 200, y: 72.7}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1247424873
@@ -2128,8 +2171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 154fcc7a6796080469641283d436b490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _intervalDataSingle: {fileID: 11400000, guid: d8d4db30b5618d44d9716423d74f9018,
-    type: 2}
+  DataSingle: {fileID: 0}
   Text_title: {fileID: 68662105}
   Color_Selected: {r: 0.15673548, g: 0.6698113, b: 0.08530616, a: 1}
   Color_UnSelected: {r: 0.98823535, g: 0.9490197, b: 0.8705883, a: 1}
@@ -2268,8 +2310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 154fcc7a6796080469641283d436b490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _intervalDataSingle: {fileID: 11400000, guid: d8d4db30b5618d44d9716423d74f9018,
-    type: 2}
+  DataSingle: {fileID: 0}
   Text_title: {fileID: 2294400182565322613}
   Color_Selected: {r: 0.15673548, g: 0.6698113, b: 0.08530616, a: 1}
   Color_UnSelected: {r: 0.98823535, g: 0.9490197, b: 0.8705883, a: 1}
@@ -3880,12 +3921,12 @@ PrefabInstance:
     - target: {fileID: 169103499925475448, guid: ebfef32ffa27902478d37f59172e055e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1080
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 169103499925475448, guid: ebfef32ffa27902478d37f59172e055e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1833.28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 169103499925475448, guid: ebfef32ffa27902478d37f59172e055e,
         type: 3}
@@ -4761,11 +4802,14 @@ MonoBehaviour:
   List_Data: []
   DropDown_Choices: {fileID: 1851125816}
   List_Questions:
+  - {fileID: 21728047}
   - {fileID: 617936667}
   - {fileID: 1651099075}
   - {fileID: 1527783318}
   Text_SelectedDataResult: {fileID: 1830760518}
   animator: {fileID: 7297887772050921680}
+  Location_CategorySelection: {fileID: 0}
+  _collectionsStorage: {fileID: 120203667}
 --- !u!224 &7297887772050921679
 RectTransform:
   m_ObjectHideFlags: 0
