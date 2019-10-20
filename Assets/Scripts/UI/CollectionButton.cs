@@ -52,10 +52,10 @@ public class CollectionButton : MonoBehaviour
          _thisToggle.onValueChanged.AddListener(delegate{
                 if(_thisToggle.isOn)
                 {
-                    this.gameObject.GetComponent<Image>().color = Color_Selected;
+                    _thisToggle.GetComponent<Image>().color = Color_Selected;
                     UI.QuizSetting.QuizSettingsListener.List_CategorySelection.Add(DataCollection);
                 }else{
-                    this.gameObject.GetComponent<Image>().color = Color_Unselected;
+                    _thisToggle.GetComponent<Image>().color = Color_Unselected;
                     UI.QuizSetting.QuizSettingsListener.List_CategorySelection.Remove(DataCollection);
                 }
             });

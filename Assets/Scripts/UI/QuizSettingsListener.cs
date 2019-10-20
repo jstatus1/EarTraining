@@ -37,7 +37,7 @@ namespace UI.QuizSetting
           ///<summary>
           /// Stores all the User's Selected Data Singles
           ///</summary>
-          public static ObservableCollection<DataSingle> List_SelectedTestDataSingles = new ObservableCollection<DataSingle>();
+          public static ObservableCollection<DataSingle> List_SelectedDataSingles = new ObservableCollection<DataSingle>();
           [SerializeField] TMP_Text Text_SelectedDataResult;
           int _currentQuestionIndex = 1;
           //count number of questions asked:
@@ -62,6 +62,7 @@ namespace UI.QuizSetting
               QuestionSetUp();
               SetButtons();
               listenToSelections();
+              listenToCategorySelections();
 
               LoadCategories();
           }
@@ -148,7 +149,21 @@ namespace UI.QuizSetting
           ///</summary>
           public void listenToCategorySelections()
           { 
+            List_CategorySelection.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(
+                delegate(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+                {
+                  if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+                  {
+                    Debug.Log("Added Collection");
+                  }else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+                  {
+                    Debug.Log("Removed Collection");
+                  }
 
+                  //ReadyGameListener.Text_Selection.text = DisplayUserSelections();
+                  Text_SelectedDataResult.text = DisplayUserSelections();
+                }
+              );
           } 
 
           //Listen To Adding or Removing Selections
@@ -158,7 +173,7 @@ namespace UI.QuizSetting
               //TODO: Abstract this part of the code away
               //adds a listener to the list to see when things are added or removed
               //updates the text selected
-              List_SelectedTestDataSingles.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(
+              List_SelectedDataSingles.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(
                 delegate(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
                 {
                   if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
@@ -180,7 +195,7 @@ namespace UI.QuizSetting
           {
             Text_SelectedDataResult.color = Color.green;
             string result = "";
-            foreach(DataSingle data in List_SelectedTestDataSingles)
+            foreach(DataSingle data in List_SelectedDataSingles)
             {
               result += data.Title + ", ";
             }
@@ -212,7 +227,7 @@ namespace UI.QuizSetting
               Managers.QuizManager.Instance.NumOfChoices = 2;
             }
 
-            if(List_SelectedTestDataSingles.Count == 0)
+            if(List_SelectedDataSingles.Count == 0)
             {
               Debug.Log("Please Select more than 0 items");
               animator.Play("Pressed_Failed");
@@ -227,7 +242,7 @@ namespace UI.QuizSetting
           void transferSelectionsToListManager()
           {
             Managers.QuizManager.Instance.IntervalList.Clear();
-            foreach(DataSingle single in List_SelectedTestDataSingles)
+            foreach(DataSingle single in List_SelectedDataSingles)
             {
               Managers.QuizManager.Instance.IntervalList.Add(single);
             }

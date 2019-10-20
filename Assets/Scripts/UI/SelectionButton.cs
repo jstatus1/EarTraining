@@ -24,11 +24,11 @@ namespace UI.IndividualButton
                 if(_thisToggle.isOn)
                 {
                     this.gameObject.GetComponent<Image>().color = Color_Selected;
-                    UI.QuizSetting.QuizSettingsListener.List_SelectedTestDataSingles.Add(DataSingle);
+                    UI.QuizSetting.QuizSettingsListener.List_SelectedDataSingles.Add(DataSingle);
                     //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Add(DataSingle);
                 }else{
                     this.gameObject.GetComponent<Image>().color = Color_UnSelected;
-                    UI.QuizSetting.QuizSettingsListener.List_SelectedTestDataSingles.Remove(DataSingle);
+                    UI.QuizSetting.QuizSettingsListener.List_SelectedDataSingles.Remove(DataSingle);
                     //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Remove(DataSingle);
                 }
             });
