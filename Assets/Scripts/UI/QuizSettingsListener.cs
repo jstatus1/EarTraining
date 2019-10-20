@@ -26,10 +26,13 @@ namespace UI.QuizSetting
           [Header("Question Configuration")]
           [SerializeField] List<GameObject> List_Questions;
 
+          [Header("Prefab Configuration")]
+          [SerializeField] GameObject Prefab_CollectionButton;
+
           ///<summary>
           /// Stores all the User's Selection Categories
           ///</summary>
-          [SerializeField] public static ObservableCollection<DataSingle> List_CategorySelection = new ObservableCollection<DataSingle>();
+          [SerializeField] public static ObservableCollection<DataCollection> List_CategorySelection = new ObservableCollection<DataCollection>();
 
           ///<summary>
           /// Stores all the User's Selected Data Singles
@@ -90,18 +93,17 @@ namespace UI.QuizSetting
 
           void LoadCategories()
           {
-            foreach(DataTypes type in Enum.GetValues(typeof(DataTypes)))
+            foreach(DataCollection collection in _collectionsStorage.getListCollections())
             {
-              Debug.Log("Types: " + type);
+              var obj = Instantiate(Prefab_CollectionButton) as GameObject;
+              obj.GetComponent<CollectionButton>().SetDataCollection = collection;
+              obj.transform.SetParent(Location_CategorySelection, false);
             }
           }
 
           void QuestionSetUp()
           {
               //Pull how many questions are in the list
-              
-              
-
               if(_currentQuestionIndex == numberOfQuestions)
                 {
                     Button_Back.gameObject.SetActive(true);
@@ -145,7 +147,7 @@ namespace UI.QuizSetting
           /// Listen to category selections
           ///</summary>
           public void listenToCategorySelections()
-          {
+          { 
 
           } 
 

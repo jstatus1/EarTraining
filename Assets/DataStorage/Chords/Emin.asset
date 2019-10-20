@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b43d3b953932ae944b1c49e8434c395e, type: 3}
-  m_Name: Amin
+  m_Name: Emin
   m_EditorClassIdentifier: 
   DataType: 1
-  Title: Amin Chord
-  AudioClip: {fileID: 8300000, guid: 515e5ae8818a064458c7183205ee1ce6, type: 3}
+  Title: E min
+  AudioClip: {fileID: 8300000, guid: 1066a2358d86f8845bd918f0e036fc37, type: 3}
   List_AudioClip: []
   Information: 
   Image: {fileID: 0}
