@@ -20,13 +20,13 @@ namespace UI.QuizSetting
           
 
           [Header("Stored Settings")]
-          [SerializeField] List<IntervalDataSingle> List_Data;
+          [SerializeField] List<DataSingle> List_Data;
           [SerializeField] TMP_Dropdown DropDown_Choices;
 
           [Header("Question Configuration")]
           [SerializeField] List<GameObject> List_Questions;
-          [SerializeField] public static List<IntervalDataSingle> List_StoreSelection = new List<IntervalDataSingle>();
-          public static ObservableCollection<IntervalDataSingle> tester = new ObservableCollection<IntervalDataSingle>();
+          [SerializeField] public static List<DataSingle> List_StoreSelection = new List<DataSingle>();
+          public static ObservableCollection<DataSingle> tester = new ObservableCollection<DataSingle>();
           [SerializeField] TMP_Text Text_SelectedDataResult;
           int _currentQuestionIndex = 1;
           //count number of questions asked:
@@ -146,7 +146,7 @@ namespace UI.QuizSetting
           {
             Text_SelectedDataResult.color = Color.green;
             string result = "";
-            foreach(IntervalDataSingle data in tester)
+            foreach(DataSingle data in tester)
             {
               result += data.Title_Interval + ", ";
             }
@@ -193,7 +193,7 @@ namespace UI.QuizSetting
           void transferSelectionsToListManager()
           {
             Managers.QuizManager.Instance.IntervalList.Clear();
-            foreach(IntervalDataSingle single in tester)
+            foreach(DataSingle single in tester)
             {
               Managers.QuizManager.Instance.IntervalList.Add(single);
             }

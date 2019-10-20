@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum QuestionTypes
+public enum DataTypes
 {
     Intervals,
     Chords,
@@ -15,8 +15,9 @@ public enum QuestionTypes
 }
 
 [CreateAssetMenu(fileName = "Interval_Data", menuName= "ScriptableObjects/IntervalData")]
-public class IntervalDataSingle : ScriptableObject
+public class DataSingle : ScriptableObject
 {
+    public DataTypes DataType;
     public string Title_Interval;
     public AudioClip AudioClip_Interval;
     public List<AudioClip> AudioClip_ListInterval;

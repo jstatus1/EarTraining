@@ -8,7 +8,7 @@ namespace UI.IndividualButton
 {
     public class SelectionButton : MonoBehaviour
     {
-        [SerializeField] IntervalDataSingle _intervalDataSingle;
+        [SerializeField] DataSingle _intervalDataSingle;
         [SerializeField] TMP_Text Text_title;
         Toggle _thisToggle;
 
@@ -35,7 +35,7 @@ namespace UI.IndividualButton
             
         }
 
-        public IntervalDataSingle getDataSingle()
+        public DataSingle getDataSingle()
         {
             return _intervalDataSingle;
         }

@@ -6,7 +6,7 @@ using System.Linq;
 
 
 ///<summary>
-///The purpose of this class is to spawn quiz question, load the audio, and select
+///The purpose of this class is to spawn quiz question, load the audio, and save
 // the right answer
 ///</sumary>
 public class QuizSetterV2: MonoBehaviour
@@ -18,10 +18,11 @@ public class QuizSetterV2: MonoBehaviour
 
     [SerializeField] GameObject Button_Question;
     [SerializeField] Transform Questions_Location;
+    [SerializeField] GameObject Prefab_AnswerChoice;
     static System.Random rnd = new System.Random();
     static AudioClip dataSound;
     string _answer;
-    IntervalDataSingle _ansdata;
+    DataSingle _ansdata;
 
     int _answerChoicesAmt = 2;
 
@@ -31,11 +32,17 @@ public class QuizSetterV2: MonoBehaviour
     void Start()
     {
             _mainAudio = gameObject.GetComponent<AudioSource>();
+            _answerChoicesAmt = Managers.QuizManager.Instance.NumOfChoices;
+
+            Debug.Log("Answer Choices Number: " + _answerChoicesAmt);
             getSetRandomDataSingle();
             SetButtons();
             SetAnswerOptions();
     }
 
+    ///<summary>
+    /// Gets Random DataSingle from the Manager Class and Loads it
+    ///</<summary>
     public void getSetRandomDataSingle()
     {
             //int randomNumber = rnd.Next(QuizManager.Instance.IntervalList.Count);
@@ -58,6 +65,9 @@ public class QuizSetterV2: MonoBehaviour
             _answer = _ansdata.Title_Interval; 
     }
 
+    ///<summary>
+    /// Sets up the Buttons for this Quiz Scene
+    ///</summary>
     void SetButtons()
     {
             Button_next.onClick.AddListener(() => {
@@ -79,6 +89,9 @@ public class QuizSetterV2: MonoBehaviour
             });
     }
 
+    ///<summary>
+    ///
+    ///</summary>
     string LoopThroughList()
     {
             string str = "";
@@ -86,28 +99,38 @@ public class QuizSetterV2: MonoBehaviour
             {
                 return "Nothing";
             }
-            foreach(IntervalDataSingle i in  Managers.QuizManager.Instance.IntervalList)
+            foreach(DataSingle i in  Managers.QuizManager.Instance.IntervalList)
             {
                 str += i.Title_Interval + " ";
             }
             return str;
     }
 
-    void SetAnswerOptions()
+    ///<summary>
+    /// Sets The Answer Choices through random shuffle
+    ///</summary>
+    public void SetAnswerOptions()
     {
-        List<IntervalDataSingle> answerChoices = new List<IntervalDataSingle>();
+        List<DataSingle> answerChoices = new List<DataSingle>();
         answerChoices.Add(_ansdata);
         
         while(answerChoices.Count < _answerChoicesAmt)
         {
+            //query all that that was in the User's Given Choice and not the answer
             var result = Managers.QuizManager.Instance.IntervalList.Where(p => !answerChoices.Any(p2 => p2 == p));
             if(result != null)
             {
                 answerChoices.Add(result.First());
             }else{
+                //TODO: Replace with not hardcoded choices
                 //answerChoices.Add();
                 break;
             }
+        }
+
+        foreach(DataSingle i in answerChoices)
+        {
+            Debug.Log(i.Title_Interval);
         }
 
         
