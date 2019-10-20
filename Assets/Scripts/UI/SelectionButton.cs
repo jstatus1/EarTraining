@@ -35,9 +35,16 @@ namespace UI.IndividualButton
             
         }
 
-        public DataSingle getDataSingle()
+        public DataSingle GetSetDataSingle
         {
-            return DataSingle;
+            get{
+                return DataSingle;
+            }
+            set{
+                DataSingle = value;
+                Text_title.text = DataSingle.Title;
+            }
+            
         }
 
         

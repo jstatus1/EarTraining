@@ -24,7 +24,10 @@ namespace UI.QuizSetting
           [SerializeField] TMP_Dropdown DropDown_Choices;
 
           [Header("Question Configuration")]
+          [Tooltip("Storage For All The Questions This Scene Needs")]
           [SerializeField] List<GameObject> List_Questions;
+          [Tooltip("Prefab For The Question")]
+          [SerializeField] GameObject Prefab_QuestionSelection;
 
           [Header("Prefab Configuration")]
           [SerializeField] GameObject Prefab_CollectionButton;
@@ -129,6 +132,14 @@ namespace UI.QuizSetting
              //Array is zerobased
              List_Questions[(_currentQuestionIndex - 1)].SetActive(true);  
           }
+
+          ///<summary>
+          ///Creates Individual Questions and Adds To Question List
+          ///</summary>
+          void CreateQuestionSelection()
+          {
+            
+          }
           
 
 
@@ -154,10 +165,10 @@ namespace UI.QuizSetting
                 {
                   if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
                   {
-                    Debug.Log("Added Collection");
+                    
                   }else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
                   {
-                    Debug.Log("Removed Collection");
+                    
                   }
 
                   //ReadyGameListener.Text_Selection.text = DisplayUserSelections();
