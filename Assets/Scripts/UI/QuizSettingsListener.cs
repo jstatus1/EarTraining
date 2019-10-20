@@ -29,6 +29,7 @@ namespace UI.QuizSetting
           [Tooltip("Prefab For The Question")]
           [SerializeField] GameObject Prefab_QuestionSelection;
           [SerializeField] Transform Location_PanelQuestion;
+          Dictionary<string, GameObject> Dictionary_AddedSelectorQuestions = new Dictionary<string, GameObject>();
 
           [Header("Prefab Configuration")]
           [SerializeField] GameObject Prefab_CollectionButton;
@@ -165,17 +166,21 @@ namespace UI.QuizSetting
                 {
                   if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
                   {
-                    //var obj = Instantiate(Prefab_QuestionSelection) as GameObject;
-                    //obj.GetComponent<SelectorQuestion>().SetDataCollection = List_CategorySelection[List_CategorySelection.Count-1];
+                    
                     foreach(DataCollection p in e.NewItems)
                     {
                       Debug.Log("Added: " + p.Title_Collection + "to Collection List");
+                      var obj = Instantiate(Prefab_QuestionSelection) as GameObject;
+                      obj.GetComponent<SelectorQuestion>().SetDataCollection = p;
+                      obj.transform.SetParent(Location_PanelQuestion);
+                      Dictionary_AddedSelectorQuestions.Add(p.Title_Collection, obj);
                     }
                   }else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
                   {
                     foreach(DataCollection p in e.OldItems)
                     {
                       Debug.Log("Removed: " + p.Title_Collection + "from Collection List");
+
                     }
                   }
 
