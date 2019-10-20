@@ -28,6 +28,7 @@ namespace UI.QuizSetting
           [SerializeField] List<GameObject> List_Questions;
           [Tooltip("Prefab For The Question")]
           [SerializeField] GameObject Prefab_QuestionSelection;
+          [SerializeField] Transform Location_PanelQuestion;
 
           [Header("Prefab Configuration")]
           [SerializeField] GameObject Prefab_CollectionButton;
@@ -60,7 +61,6 @@ namespace UI.QuizSetting
           //loop through and ask questions
           void Start()
           {
-              
               numberOfQuestions = List_Questions.Count;
               QuestionSetUp();
               SetButtons();
@@ -138,7 +138,7 @@ namespace UI.QuizSetting
           ///</summary>
           void CreateQuestionSelection()
           {
-            
+
           }
           
 

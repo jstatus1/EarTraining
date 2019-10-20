@@ -4,20 +4,28 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+///<summary>
+/// This is button that displays for the selection screen
+///</summary>
+
 namespace UI.IndividualButton
 {
     public class SelectionButton : MonoBehaviour
     {
-        [SerializeField] DataSingle DataSingle;
+        [Header("Configuration for UI")]
         [SerializeField] TMP_Text Text_title;
-        Toggle _thisToggle;
-
+        [SerializeField] Button Button_Audio;
         [SerializeField] Color Color_Selected;
         [SerializeField] Color Color_UnSelected;
+        DataSingle DataSingle;
+        Toggle _thisToggle;
+        AudioSource _audioSource;
+        
 
         // Start is called before the first frame update
         void Start()
         {
+            _audioSource = FindObjectOfType<AudioSource>();
             _thisToggle = this.gameObject.GetComponent<Toggle>();
             Text_title.text = DataSingle.Title.ToUpper();
             _thisToggle.onValueChanged.AddListener(delegate{
@@ -31,8 +39,15 @@ namespace UI.IndividualButton
                     UI.QuizSetting.QuizSettingsListener.List_SelectedDataSingles.Remove(DataSingle);
                     //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Remove(DataSingle);
                 }
+            }); 
+        }
+        
+        void SetUpButton()
+        {
+            Button_Audio.onClick.AddListener(() => {
+               _audioSource.clip = DataSingle.AudioClip;
+               _audioSource.PlayOneShot(_audioSource.clip); 
             });
-            
         }
 
         public DataSingle GetSetDataSingle

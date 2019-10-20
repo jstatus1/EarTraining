@@ -7,6 +7,7 @@ using TMPro;
 ///<summary>
 /// Acts As A Prefab for displaying all the data singles 
 /// from the data collection to the UI
+/// The dataCollection data type will decide what selections are available
 ///</summary>
 public class SelectorQuestion : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class SelectorQuestion : MonoBehaviour
         foreach(DataSingle data in dataCollection.List_DataSingles)
         {
             var obj = Instantiate(Prefab_SelectionButton) as GameObject;
+            obj.GetComponent<UI.IndividualButton.SelectionButton>().GetSetDataSingle = data;
             obj.transform.SetParent(Location_Content,false);
         }
     }
