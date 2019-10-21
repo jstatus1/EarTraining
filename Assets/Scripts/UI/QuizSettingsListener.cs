@@ -67,7 +67,7 @@ namespace UI.QuizSetting
               SetButtons();
               listenToSelections();
               listenToCategorySelections();
-
+              RefreshQuestionAndSelection();
               LoadCategories();
           }
 
@@ -173,6 +173,7 @@ namespace UI.QuizSetting
                       var obj = Instantiate(Prefab_QuestionSelection) as GameObject;
                       obj.GetComponent<SelectorQuestion>().SetDataCollection = p;
                       obj.transform.SetParent(Location_PanelQuestion);
+                      obj.SetActive(false);
                       Dictionary_AddedSelectorQuestions.Add(p.Title_Collection, obj);
                     }
                   }else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
@@ -180,15 +181,49 @@ namespace UI.QuizSetting
                     foreach(DataCollection p in e.OldItems)
                     {
                       Debug.Log("Removed: " + p.Title_Collection + "from Collection List");
-
+                      Dictionary_AddedSelectorQuestions.Remove(p.Title_Collection);
                     }
                   }
 
-                  //ReadyGameListener.Text_Selection.text = DisplayUserSelections();
-                  Text_SelectedDataResult.text = DisplayUserSelections();
+                  RefreshQuestionAndSelection();
                 }
               );
           } 
+
+          ///<summary>
+          /// Delete the Current Collection
+          ///</summary>
+          void RefreshQuestionAndSelection()
+          {
+            //delete the deselected current collection
+            if(List_Questions.Count != 3)
+            {
+              int questionCount = List_Questions.Count;
+              for(int j = 2; j < (questionCount - 1); j++)
+              {
+                var removeObj = List_Questions[j];
+                GameObject.Destroy(removeObj);
+                List_Questions.RemoveAt(j);
+              }
+            }
+
+            // if(List_CategorySelection.Count > 0)
+            // {
+            //   int collectionCounter = List_Questions.Count;
+            //   //current question count: 3  , i < 5
+            //   int categoryCounter = 0;
+            //   for(int j = 2; j < (List_CategorySelection.Count + collectionCounter); j++)
+            //   {
+            //     var lastItem = List_Questions[j];
+            //     List_Questions.Insert(j, Dictionary_AddedSelectorQuestions[categoryCounter]);
+            //     categoryCounter++;
+            //   }
+            // }
+        
+            
+            //Clear Current Data Collection
+            List_SelectedDataSingles.Clear();
+          }
 
           //Listen To Adding or Removing Selections
           public void listenToSelections()
