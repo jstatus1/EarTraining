@@ -15,8 +15,8 @@ MonoBehaviour:
   dataTypes: 1
   Title_Collection: Chords
   List_DataSingles:
-  - {fileID: 11400000, guid: 1d603f5560446f040bbdb6230ae1a679, type: 2}
   - {fileID: 11400000, guid: 740fb166392cdfc40a4b982b6f238249, type: 2}
   - {fileID: 11400000, guid: 64b40bfcc233c5a4e8e6402670fd25bf, type: 2}
+  - {fileID: 11400000, guid: 1d603f5560446f040bbdb6230ae1a679, type: 2}
   Information: 
   Image: {fileID: 0}

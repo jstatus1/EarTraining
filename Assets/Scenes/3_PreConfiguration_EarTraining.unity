@@ -158,7 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 21728048}
   m_Layer: 5
-  m_Name: Question 1
+  m_Name: Question_CategorySelector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListCollections:
-  - {fileID: 11400000, guid: 9d9ead6371dd0ff469005555d7e21175, type: 2}
+  - {fileID: 11400000, guid: bf76847da297e8646806ae893c098025, type: 2}
   - {fileID: 11400000, guid: 82d9a9d64fc732f4b92d22b8d3921340, type: 2}
 --- !u!4 &120203668
 Transform:
@@ -1010,7 +1010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 617936668}
   m_Layer: 5
-  m_Name: Question 2
+  m_Name: Question_AnswerChoicesSize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1317,7 +1317,7 @@ GameObject:
   - component: {fileID: 1527783319}
   - component: {fileID: 1527783320}
   m_Layer: 5
-  m_Name: Ready
+  m_Name: Panel_Ready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1339,7 +1339,7 @@ RectTransform:
   - {fileID: 690323095}
   - {fileID: 1830760517}
   m_Father: {fileID: 1629978239}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -1502,8 +1502,8 @@ RectTransform:
   m_Children:
   - {fileID: 21728048}
   - {fileID: 617936668}
-  - {fileID: 1651099076}
   - {fileID: 1527783319}
+  - {fileID: 1651099076}
   - {fileID: 2294400181934845996}
   m_Father: {fileID: 7297887772050921679}
   m_RootOrder: 1
@@ -1521,12 +1521,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629978238}
   m_CullTransparentMesh: 0
---- !u!1 &1651099075 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7645632925466561444, guid: fe087dd390baf9040b144d99e4d679e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 7645632926031203943}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1651099076 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7645632925466561443, guid: fe087dd390baf9040b144d99e4d679e4,
@@ -3470,11 +3464,10 @@ MonoBehaviour:
   Button_Forward: {fileID: 1126169922}
   List_Data: []
   DropDown_Choices: {fileID: 1851125816}
-  List_Questions:
-  - {fileID: 21728047}
-  - {fileID: 617936667}
-  - {fileID: 1651099075}
-  - {fileID: 1527783318}
+  Panel_Ready: {fileID: 1527783318}
+  Question_CategorySelector: {fileID: 21728047}
+  Question_AnswerChoiceSize: {fileID: 617936667}
+  List_Questions: []
   Prefab_QuestionSelection: {fileID: 7645632925466561444, guid: fe087dd390baf9040b144d99e4d679e4,
     type: 3}
   Location_PanelQuestion: {fileID: 1629978239}
@@ -3648,7 +3641,7 @@ PrefabInstance:
     - target: {fileID: 7645632925466561443, guid: fe087dd390baf9040b144d99e4d679e4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7645632925466561443, guid: fe087dd390baf9040b144d99e4d679e4,
         type: 3}

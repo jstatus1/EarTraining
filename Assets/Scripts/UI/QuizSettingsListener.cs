@@ -1,6 +1,4 @@
-﻿
-
-namespace UI.QuizSetting
+﻿namespace UI.QuizSetting
 {
     using System;
     using System.Collections;
@@ -25,7 +23,13 @@ namespace UI.QuizSetting
 
           [Header("Question Configuration")]
           [Tooltip("Storage For All The Questions This Scene Needs")]
+          
+          [SerializeField] GameObject Panel_Ready;
+          [SerializeField] GameObject Question_CategorySelector;
+          [SerializeField] GameObject Question_AnswerChoiceSize;
+
           [SerializeField] List<GameObject> List_Questions;
+
           [Tooltip("Prefab For The Question")]
           [SerializeField] GameObject Prefab_QuestionSelection;
           [SerializeField] Transform Location_PanelQuestion;
@@ -63,7 +67,7 @@ namespace UI.QuizSetting
           void Start()
           {
               numberOfQuestions = List_Questions.Count;
-              QuestionSetUp();
+              //QuestionSetUp();
               SetButtons();
               listenToSelections();
               listenToCategorySelections();
@@ -79,13 +83,12 @@ namespace UI.QuizSetting
               });
               Button_Forward.onClick.AddListener(() => {
                 ++_currentQuestionIndex;
-                Debug.Log("clicked forward");
-                QuestionSetUp();
+                //QuestionSetUp();
 
               });
               Button_Back.onClick.AddListener(()=> {
                 --_currentQuestionIndex;
-                 QuestionSetUp();
+                 //QuestionSetUp();
 
               });
               
@@ -106,41 +109,33 @@ namespace UI.QuizSetting
             }
           }
 
-          void QuestionSetUp()
-          {
-              //Pull how many questions are in the list
-              if(_currentQuestionIndex == numberOfQuestions)
-                {
-                    Button_Back.gameObject.SetActive(true);
-                    Button_Forward.gameObject.SetActive(false);
-                }
-              else if(_currentQuestionIndex == 1)
-                {
-                    Button_Back.gameObject.SetActive(false);
-                    Button_Forward.gameObject.SetActive(true);
-                }
-              else
-                {
-                    Button_Back.gameObject.SetActive(true);
-                    Button_Forward.gameObject.SetActive(true);
-                }
+          // void QuestionSetUp()
+          // {
+          //     //Pull how many questions are in the list
+          //     if(_currentQuestionIndex == numberOfQuestions)
+          //       {
+          //           Button_Back.gameObject.SetActive(true);
+          //           Button_Forward.gameObject.SetActive(false);
+          //       }
+          //     else if(_currentQuestionIndex == 1)
+          //       {
+          //           Button_Back.gameObject.SetActive(false);
+          //           Button_Forward.gameObject.SetActive(true);
+          //       }
+          //     else
+          //       {
+          //           Button_Back.gameObject.SetActive(true);
+          //           Button_Forward.gameObject.SetActive(true);
+          //       }
             
-             //set all gameObject to null
-             List_Questions.ForEach(question => {
-               question.SetActive(false);
-             });
+          //    //set all gameObject to null
+          //    List_Questions.ForEach(question => {
+          //      question.SetActive(false);
+          //    });
 
-             //Array is zerobased
-             List_Questions[(_currentQuestionIndex - 1)].SetActive(true);  
-          }
-
-          ///<summary>
-          ///Creates Individual Questions and Adds To Question List
-          ///</summary>
-          void CreateQuestionSelection()
-          {
-
-          }
+          //    //Array is zerobased
+          //    List_Questions[(_currentQuestionIndex - 1)].SetActive(true);  
+          // }
           
 
 
@@ -172,26 +167,32 @@ namespace UI.QuizSetting
                       Debug.Log("Added: " + p.Title_Collection + "to Collection List");
                       var obj = Instantiate(Prefab_QuestionSelection) as GameObject;
                       obj.GetComponent<SelectorQuestion>().SetDataCollection = p;
-                      obj.transform.SetParent(Location_PanelQuestion);
+                      obj.transform.SetParent(Location_PanelQuestion, false);
                       obj.SetActive(false);
                       Dictionary_AddedSelectorQuestions.Add(p.Title_Collection, obj);
+                      Debug.Log($"Amount in Dictionary: {Dictionary_AddedSelectorQuestions.Count}");
                     }
                   }else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
                   {
                     foreach(DataCollection p in e.OldItems)
                     {
                       Debug.Log("Removed: " + p.Title_Collection + "from Collection List");
+                      //remove from the List_Question
+
+                      //remove from the scene
                       Dictionary_AddedSelectorQuestions.Remove(p.Title_Collection);
+
+                      GameObject.DestroyImmediate(p, true);
+                      
+                      Debug.Log($"Amount in Dictionary: {Dictionary_AddedSelectorQuestions.Count}");
                     }
                   }
-
-                  RefreshQuestionAndSelection();
                 }
               );
           } 
 
           ///<summary>
-          /// Delete the Current Collection
+          /// Delete the Current Collection For 
           ///</summary>
           void RefreshQuestionAndSelection()
           {
@@ -206,23 +207,6 @@ namespace UI.QuizSetting
                 List_Questions.RemoveAt(j);
               }
             }
-
-            // if(List_CategorySelection.Count > 0)
-            // {
-            //   int collectionCounter = List_Questions.Count;
-            //   //current question count: 3  , i < 5
-            //   int categoryCounter = 0;
-            //   for(int j = 2; j < (List_CategorySelection.Count + collectionCounter); j++)
-            //   {
-            //     var lastItem = List_Questions[j];
-            //     List_Questions.Insert(j, Dictionary_AddedSelectorQuestions[categoryCounter]);
-            //     categoryCounter++;
-            //   }
-            // }
-        
-            
-            //Clear Current Data Collection
-            List_SelectedDataSingles.Clear();
           }
 
           //Listen To Adding or Removing Selections
