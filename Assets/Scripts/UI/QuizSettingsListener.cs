@@ -182,7 +182,7 @@
                       //remove from the scene
                       Dictionary_AddedSelectorQuestions.Remove(p.Title_Collection);
 
-                      GameObject.DestroyImmediate(p, true);
+                      GameObject.Destroy(p);
                       
                       Debug.Log($"Amount in Dictionary: {Dictionary_AddedSelectorQuestions.Count}");
                     }
