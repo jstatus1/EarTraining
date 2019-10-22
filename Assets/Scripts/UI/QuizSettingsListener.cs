@@ -8,6 +8,8 @@
     using UnityEngine.UI;
     using TMPro;
     using UnityEngine.SceneManagement;
+    using SA.CrossPlatform.UI;
+
 
     public class QuizSettingsListener : MonoBehaviour
     {
@@ -28,8 +30,6 @@
           [SerializeField] GameObject Question_CategorySelector;
           [SerializeField] GameObject Question_AnswerChoiceSize;
 
-          [SerializeField] List<GameObject> List_Questions;
-
           [Tooltip("Prefab For The Question")]
           [SerializeField] GameObject Prefab_QuestionSelection;
           [SerializeField] Transform Location_PanelQuestion;
@@ -49,8 +49,6 @@
           public static ObservableCollection<DataSingle> List_SelectedDataSingles = new ObservableCollection<DataSingle>();
           [SerializeField] TMP_Text Text_SelectedDataResult;
           int _currentQuestionIndex = 1;
-          //count number of questions asked:
-          int numberOfQuestions = 0;
 
           [SerializeField] Animator animator;
 
@@ -66,12 +64,10 @@
           //loop through and ask questions
           void Start()
           {
-              numberOfQuestions = List_Questions.Count;
-              //QuestionSetUp();
+              SetQuestions();
               SetButtons();
               listenToSelections();
               listenToCategorySelections();
-              RefreshQuestionAndSelection();
               LoadCategories();
           }
 
@@ -92,11 +88,17 @@
 
               });
               
-
               //TODO: Make Separate Class Called Questions with specialized child of different variations
               DropDown_Choices.onValueChanged.AddListener(delegate{
                 Managers.QuizManager.Instance.NumOfChoices = Int32.Parse(DropDown_Choices.options[DropDown_Choices.value].text);
               });
+          }
+
+          void SetQuestions()
+          {
+            Panel_Ready.SetActive(false);
+            Question_AnswerChoiceSize.SetActive(false);
+            Question_CategorySelector.SetActive(true);
           }
 
           void LoadCategories()
@@ -109,6 +111,7 @@
             }
           }
 
+          #region Deletable??
           // void QuestionSetUp()
           // {
           //     //Pull how many questions are in the list
@@ -136,7 +139,42 @@
           //    //Array is zerobased
           //    List_Questions[(_currentQuestionIndex - 1)].SetActive(true);  
           // }
+    #endregion      
           
+          ///<summary>
+          /// Connect the buttons with the flow of the questions
+          /// refreshes every time
+          /// replacement for QuestionSetUp()
+          ///</summary>
+          void QuestionFlow()
+          {
+              var title = "";
+              var message = "";
+              
+                  
+
+            //if Dictionary_AddedSelectorQuestions count is zero do not allow the user to go to the next question
+            if(Dictionary_AddedSelectorQuestions.Count == 0)
+            {
+                title = "Error";
+                message = "Please Select At Least One Topic To Be Quizzed Over";
+                var builder = new UM_NativeDialogBuilder(title, message);
+                builder.SetPositiveButton("Okay", () => {
+                      
+                  });
+            }else{
+                Question_CategorySelector.SetActive(false);
+                Question_AnswerChoiceSize.SetActive(true);
+                return;
+            }
+            //check to see if the Question_AnswerChoicesQuestion is active, if so, then check to see if the the player...
+            if(Question_AnswerChoiceSize.activeSelf)
+            {
+
+            }
+            //if player is on Question_Selectable type then make make sure the player has at least one of the SelectorButton activivated
+            //if player is on Panel_Ready launch, check to see if all the following validation matches before proceeding to the question
+          }
 
 
           #region storage of data and tranfer to Quiz Manager
@@ -193,24 +231,7 @@
               );
           } 
 
-          ///<summary>
-          /// Delete the Current Collection For 
-          ///</summary>
-          void RefreshQuestionAndSelection()
-          {
-            //delete the deselected current collection
-            if(List_Questions.Count != 3)
-            {
-              int questionCount = List_Questions.Count;
-              for(int j = 2; j < (questionCount - 1); j++)
-              {
-                var removeObj = List_Questions[j];
-                GameObject.Destroy(removeObj);
-                List_Questions.RemoveAt(j);
-              }
-            }
-          }
-
+          
           //Listen To Adding or Removing Selections
           public void listenToSelections()
           {
