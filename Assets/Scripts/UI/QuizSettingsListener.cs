@@ -9,6 +9,7 @@
     using TMPro;
     using UnityEngine.SceneManagement;
     using SA.CrossPlatform.UI;
+    using System.Linq;
 
 
     public class QuizSettingsListener : MonoBehaviour
@@ -58,13 +59,13 @@
 
           void Awake()
           {
-            
+            //Set the Questions and Buttons to comploy 
+            AwakeQuestionSet();
           }
           
           //loop through and ask questions
           void Start()
           {
-              SetQuestions();
               SetButtons();
               listenToSelections();
               listenToCategorySelections();
@@ -79,12 +80,12 @@
               });
               Button_Forward.onClick.AddListener(() => {
                 ++_currentQuestionIndex;
-                //QuestionSetUp();
+                  QuestionFlowForeward();
 
               });
               Button_Back.onClick.AddListener(()=> {
                 --_currentQuestionIndex;
-                 //QuestionSetUp();
+                 QuestionFlowBackward();
 
               });
               
@@ -94,10 +95,15 @@
               });
           }
 
-          void SetQuestions()
-          {
-            Panel_Ready.SetActive(false);
+          ///<summary>
+          /// Initial Setting That The Game Takes Upon Loading Every Time To
+          /// Set up the questions properly
+          ///</summary>
+          void AwakeQuestionSet()
+          {            
+            Button_Back.gameObject.SetActive(false);
             Question_AnswerChoiceSize.SetActive(false);
+            Panel_Ready.SetActive(false);
             Question_CategorySelector.SetActive(true);
           }
 
@@ -142,16 +148,15 @@
     #endregion      
           
           ///<summary>
+          /// Provides Validation
           /// Connect the buttons with the flow of the questions
           /// refreshes every time
           /// replacement for QuestionSetUp()
           ///</summary>
-          void QuestionFlow()
+          void QuestionFlowForeward()
           {
-              var title = "";
-              var message = "";
-              
-                  
+            var title = "";
+            var message = "";
 
             //if Dictionary_AddedSelectorQuestions count is zero do not allow the user to go to the next question
             if(Dictionary_AddedSelectorQuestions.Count == 0)
@@ -162,20 +167,50 @@
                 builder.SetPositiveButton("Okay", () => {
                       
                   });
+                _currentQuestionIndex = 0;
+                AwakeQuestionSet();
                 return;
             }else{
-                Question_CategorySelector.SetActive(false);
-                Question_AnswerChoiceSize.SetActive(true);
-                return;
-            }
-            //check to see if the Question_AnswerChoicesQuestion is active, if so, then check to see if the the player...
+                  if(!Question_AnswerChoiceSize.activeSelf)
+                  {
+                    Question_CategorySelector.SetActive(false);
+                    Panel_Ready.SetActive(false);
+                    Question_AnswerChoiceSize.SetActive(true);
+                    Button_Back.gameObject.SetActive(true);
+                    return;
+                  }
+
+                  if(Question_AnswerChoiceSize.activeSelf)
+                  {
+                    Question_AnswerChoiceSize.SetActive(false);
+                    loopThroughSelectableQuestions();
+                  }
+
+                }
+          }
+
+          void QuestionFlowBackward()
+          {
             if(Question_AnswerChoiceSize.activeSelf)
             {
-
+              Question_CategorySelector.SetActive(true);
+              Panel_Ready.SetActive(false);
+              Question_AnswerChoiceSize.SetActive(false);
+              Button_Back.gameObject.SetActive(false);
+              return;
             }
-            //if player is on Question_Selectable type then make make sure the player has at least one of the SelectorButton activivated
-            //if player is on Panel_Ready launch, check to see if all the following validation matches before proceeding to the question
           }
+          
+          ///<summary>
+          //Loops through selectableQuestions
+          ///</summary>
+          void loopThroughSelectableQuestions()
+          {
+            string firstObj = Dictionary_AddedSelectorQuestions.Keys.First();
+            string lastObj = Dictionary_AddedSelectorQuestions.Keys.Last();
+            Dictionary_AddedSelectorQuestions[firstObj].SetActive(true);
+          }
+          
 
 
           #region storage of data and tranfer to Quiz Manager

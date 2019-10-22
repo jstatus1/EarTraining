@@ -18,7 +18,7 @@ namespace UI.IndividualButton
         [SerializeField] Color Color_Selected;
         [SerializeField] Color Color_UnSelected;
         DataSingle DataSingle;
-        Toggle _thisToggle;
+        [SerializeField] Toggle _thisToggle;
         AudioSource _audioSource;
         
 
@@ -26,16 +26,16 @@ namespace UI.IndividualButton
         void Start()
         {
             _audioSource = FindObjectOfType<AudioSource>();
-            _thisToggle = this.gameObject.GetComponent<Toggle>();
+            //_thisToggle = gameObject.GetComponent<Toggle>();
             Text_title.text = DataSingle.Title.ToUpper();
             _thisToggle.onValueChanged.AddListener(delegate{
                 if(_thisToggle.isOn)
                 {
-                    this.gameObject.GetComponent<Image>().color = Color_Selected;
+                    _thisToggle.GetComponent<Image>().color = Color_Selected;
                     UI.QuizSetting.QuizSettingsListener.List_SelectedDataSingles.Add(DataSingle);
                     //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Add(DataSingle);
                 }else{
-                    this.gameObject.GetComponent<Image>().color = Color_UnSelected;
+                    _thisToggle.GetComponent<Image>().color = Color_UnSelected;
                     UI.QuizSetting.QuizSettingsListener.List_SelectedDataSingles.Remove(DataSingle);
                     //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Remove(DataSingle);
                 }

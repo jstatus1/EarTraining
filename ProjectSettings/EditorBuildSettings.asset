@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Intervals/Intervals.unity
     guid: 02878030081650f4e97169bad6322c1f
   - enabled: 1
-    path: Assets/Scenes/1_Information_Scene.unity
+    path: Assets/Scenes/1_Information.unity
     guid: 5c39168024ec69a43b13308aee09aee8
   - enabled: 1
     path: Assets/Scenes/3_Quiz.unity
