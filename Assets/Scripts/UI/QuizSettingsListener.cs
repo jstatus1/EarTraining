@@ -162,6 +162,7 @@
                 builder.SetPositiveButton("Okay", () => {
                       
                   });
+                return;
             }else{
                 Question_CategorySelector.SetActive(false);
                 Question_AnswerChoiceSize.SetActive(true);

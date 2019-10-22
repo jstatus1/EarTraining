@@ -15,9 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/1_Information_Scene.unity
     guid: 5c39168024ec69a43b13308aee09aee8
   - enabled: 1
-    path: Assets/Scenes/2_Quiz_Scene.unity
+    path: Assets/Scenes/3_Quiz.unity
     guid: 30ff4ff0f8fae564ea12b0e4ac6df49d
   - enabled: 1
-    path: Assets/Scenes/3_PreConfiguration_EarTraining.unity
+    path: Assets/Scenes/2_PreConfigurationQuiz.unity
     guid: 19e502641a8463b45a39ea6d0740de73
   m_configObjects: {}
