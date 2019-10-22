@@ -166,6 +166,7 @@
                     {
                       Debug.Log("Added: " + p.Title_Collection + "to Collection List");
                       var obj = Instantiate(Prefab_QuestionSelection) as GameObject;
+                      //DataCollection data = p;
                       obj.GetComponent<SelectorQuestion>().SetDataCollection = p;
                       obj.transform.SetParent(Location_PanelQuestion, false);
                       obj.SetActive(false);
@@ -180,9 +181,10 @@
                       //remove from the List_Question
 
                       //remove from the scene
+                      GameObject.Destroy(Dictionary_AddedSelectorQuestions[p.Title_Collection]);
                       Dictionary_AddedSelectorQuestions.Remove(p.Title_Collection);
 
-                      GameObject.Destroy(p);
+                      
                       
                       Debug.Log($"Amount in Dictionary: {Dictionary_AddedSelectorQuestions.Count}");
                     }
