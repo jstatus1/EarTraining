@@ -10,17 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b43d3b953932ae944b1c49e8434c395e, type: 3}
-  m_Name: Perfect Octave
+  m_Name: G Chord
   m_EditorClassIdentifier: 
-  DataType: 0
+  DataType: 1
   InstrumentTypes: 0
-  Title: Perfect Octave
+  Title: G Chord
   AudioClip: {fileID: 0}
-  List_AudioClip:
-  - {fileID: 8300000, guid: 344be44434dd8c04895bb72ed89325e0, type: 3}
-  - {fileID: 8300000, guid: 239e03be28d65ca4f97f0be9667ca67e, type: 3}
-  - {fileID: 8300000, guid: cc56a790f75f4dc42be5266297db26b0, type: 3}
-  - {fileID: 8300000, guid: b132c3c7e5090fc4dbcc74fb2d4c50c3, type: 3}
-  - {fileID: 8300000, guid: 4a74df75fef10424bb05e4874742c69c, type: 3}
+  List_AudioClip: []
   Information: 
   Image: {fileID: 0}

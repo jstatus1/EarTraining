@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43d3b953932ae944b1c49e8434c395e, type: 3}
   m_Name: Major 3rd
   m_EditorClassIdentifier: 
-  Title_Interval: 
-  AudioClip_Interval: {fileID: 0}
-  AudioClip_ListInterval: []
-  Information_Interval: 
-  Image_Interval: {fileID: 0}
+  DataType: 0
+  InstrumentTypes: 0
+  Title: Major 3rd
+  AudioClip: {fileID: 0}
+  List_AudioClip:
+  - {fileID: 8300000, guid: 8601ea1b6b659074a9b77349ed530acc, type: 3}
+  - {fileID: 8300000, guid: 2df414f702d74ef4c8c51f2e2f7f8543, type: 3}
+  - {fileID: 8300000, guid: ccab2d4bfeaab054db9db5c815f3fb3e, type: 3}
+  - {fileID: 8300000, guid: e007c298854e3a647aaf1ea6f1c8578f, type: 3}
+  - {fileID: 8300000, guid: ca7380e32703e814db6f4212e29afe87, type: 3}
+  Information: 
+  Image: {fileID: 0}

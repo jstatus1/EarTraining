@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43d3b953932ae944b1c49e8434c395e, type: 3}
   m_Name: Perfect 4th
   m_EditorClassIdentifier: 
-  Title_Interval: Perfect 4th
-  AudioClip_Interval: {fileID: 0}
-  AudioClip_ListInterval:
-  - {fileID: 8300000, guid: 397d6ad22564c0141940c861efaf13fc, type: 3}
-  Information_Interval: 
-  Image_Interval: {fileID: 0}
+  DataType: 0
+  InstrumentTypes: 0
+  Title: Perfect 4th
+  AudioClip: {fileID: 0}
+  List_AudioClip:
+  - {fileID: 8300000, guid: f5e9a3184cac1cc40af5dc1050f08af6, type: 3}
+  - {fileID: 8300000, guid: 4fab028fbc1c7004a8603f9989d0c40c, type: 3}
+  - {fileID: 8300000, guid: a2b85cedc06433640bb5443ea36cfd92, type: 3}
+  - {fileID: 8300000, guid: a30d726fb51d4dc43a901037e1d992c5, type: 3}
+  - {fileID: 8300000, guid: f17f3931dd460364eb0bce10db11a086, type: 3}
+  Information: 
+  Image: {fileID: 0}

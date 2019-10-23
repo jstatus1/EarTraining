@@ -34,7 +34,7 @@ namespace UI.IndividualButton
         void SetUpButton()
         {
             Button_Audio.onClick.AddListener(() => {
-               _audioSource.clip = DataSingle.AudioClip;
+               _audioSource.clip = DataSingle.getAudioClip;
                _audioSource.Play(); 
             });
 
