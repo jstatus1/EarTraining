@@ -356,22 +356,29 @@
           public string DisplayUserSelections()
           {
             Text_SelectedDataResult.color = Color.green;
-            string result = "";
+            string result ="";
+            
             foreach(DataSingle data in List_SelectedDataSingles)
             {
-              result += data.Title + ", ";
+              if(List_SelectedDataSingles.Last().Equals(data))
+              {
+                result += data.Title;
+              }else
+              {
+                result += data.Title + ", ";
+              }
             }
-            
 
-            // while(result[result.Length - 1].Equals(" ") || result[result.Length - 1].Equals(','))
-            // {
-            //   result.Remove(result.Length - 1);
-            // }
-
-            if(result == "")
+            if(String.IsNullOrEmpty(result))
             {
               Text_SelectedDataResult.color = Color.red;
               return "Error, Please Select Intervals To Practice With";
+              var builder = new UM_NativeDialogBuilder("Error", "Please Select Something To Be Tested Over");
+              builder.SetPositiveButton("Okay", () => {
+
+              });
+              var dialog = builder.Build();
+              dialog.Show();
             }
               return result;
           }
@@ -398,7 +405,7 @@
             
             transferSelectionsToListManager();
 
-            SceneManager.LoadScene("2_Quiz_Scene");
+            SceneManager.LoadScene("3_Quiz");
           }
 
           void transferSelectionsToListManager()

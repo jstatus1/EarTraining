@@ -31,10 +31,8 @@ public class QuizSetterV2: MonoBehaviour
 
     void Start()
     {
-            _mainAudio = gameObject.GetComponent<AudioSource>();
+            _mainAudio = Managers.QuizManager.Instance.getMainAudio;
             _answerChoicesAmt = Managers.QuizManager.Instance.NumOfChoices;
-
-            Debug.Log("Answer Choices Number: " + _answerChoicesAmt);
             getSetRandomDataSingle();
             SetButtons();
             SetAnswerOptions();

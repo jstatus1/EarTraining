@@ -1,18 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
+///<summary>
+/// Prefab for Answer Choices
+///</summary>
 public class AnswerChoiceButton : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] TMP_Text Text_AnswerOption;
+    [SerializeField] Button Button_Audio;
+    [SerializeField] Toggle Button_Answer;
+
+    AudioClip AudioClip_Audio;
+    AudioSource AudioSource_Main;
+
+    bool answer;
+
     void Start()
     {
-        
+        AudioSource_Main = Managers.QuizManager.Instance.getMainAudio; 
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool getSetAnswer
     {
-        
+        get{
+            return answer;
+        }
+        set{
+            answer = value;
+        }
     }
 }
