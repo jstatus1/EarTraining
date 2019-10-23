@@ -49,6 +49,11 @@ public class AnswerChoiceButton : MonoBehaviour
         });
     }
 
+    public void setToggleGroup(ToggleGroup group)
+    {
+        Button_Answer.group = group;
+    }
+
     public bool getSetIsAnswer
     {
         get{

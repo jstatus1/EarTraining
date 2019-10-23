@@ -22,6 +22,7 @@ public class QuizSetter: MonoBehaviour
     [SerializeField] Transform Questions_Location;
     [SerializeField] GameObject Prefab_AnswerChoice;
     [SerializeField] CollectionsStorage CollectionsStorage;
+    [SerializeField] ToggleGroup ToggleGroup;
     static System.Random rnd = new System.Random();
     static AudioClip AudioClip_AnswerClip;
     string _answer;
@@ -158,6 +159,7 @@ public class QuizSetter: MonoBehaviour
             {
                 optionsBtn.GetComponent<AnswerChoiceButton>().getSetIsAnswer = true;
             }
+            optionsBtn.GetComponent<AnswerChoiceButton>().setToggleGroup(ToggleGroup);
             optionsBtn.transform.SetParent(Questions_Location, false);
         }
     }
