@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine.SceneManagement;
+using SA.CrossPlatform.UI;
 
 
 ///<summary>
@@ -78,7 +80,15 @@ public class QuizSetter: MonoBehaviour
                 _mainAudio.Play();
             });
             Button_Exit.onClick.AddListener(() => {
-                //show exit panel confirmation
+                string title = "Return Home";
+                string message = "Are You Sure You Want To Return Home?";
+                var builder = new UM_NativeDialogBuilder(title, message);
+                builder.SetPositiveButton("Okay", () => {
+                    SceneManager.LoadScene("0_MenuScreen");
+                });
+
+                var dialog = builder.Build();
+                dialog.Show();
             });
     }
 
@@ -163,5 +173,7 @@ public class QuizSetter: MonoBehaviour
             optionsBtn.transform.SetParent(Questions_Location, false);
         }
     }
+
+    
 
 }
