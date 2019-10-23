@@ -72,8 +72,19 @@ public class QuizSetter: MonoBehaviour
     void SetButtons()
     {
             Button_next.onClick.AddListener(() => {
-                //go to the next slide
-                getSetAnswer();
+                if(!ToggleGroup.ActiveToggles().Any())
+                {
+                    string message = $"Please Select An Answer";
+                    var builder = new UM_NativeDialogBuilder("", message);
+                    builder.SetPositiveButton("Okay", () => {
+                        
+                    });
+
+                    var dialog = builder.Build();
+                    dialog.Show();
+                    return;
+                }
+                checkAnswer();
             });
             Button_PlaySound.onClick.AddListener(() => {
                 _mainAudio.clip = AudioClip_AnswerClip;
@@ -160,6 +171,8 @@ public class QuizSetter: MonoBehaviour
     ///</summary>
     public void InstantiateAnswerOptions()
     {
+        Questions_Location.Clear();
+        ToggleGroup.SetAllTogglesOff();
         List<DataSingle> List_AnswerOptions = SetAnswerOptionsList();
         foreach(DataSingle answerChoice in List_AnswerOptions)
         {
@@ -174,6 +187,36 @@ public class QuizSetter: MonoBehaviour
         }
     }
 
-    
+
+    void checkAnswer()
+    {          
+
+        Debug.Log($"Answer: {ToggleGroup.ActiveToggles().First().GetComponentInParent<AnswerChoiceButton>().getSetIsAnswer}");
+        if(ToggleGroup.ActiveToggles().First().GetComponentInParent<AnswerChoiceButton>().getSetIsAnswer)
+        {
+            string title = "Correct";
+            string message = "Good Job";
+            var builder = new UM_NativeDialogBuilder(title, message);
+            builder.SetPositiveButton("Okay", () => {
+                            
+            });
+            var dialog = builder.Build();
+            dialog.Show();
+        }else{
+            string title = "Incorrect";
+            string message = "Please Try Again";
+            var builder = new UM_NativeDialogBuilder(title, message);
+            builder.SetPositiveButton("Okay", () => {
+                            
+            });
+            var dialog = builder.Build();
+            dialog.Show();
+            return;
+        }
+        getSetAnswer();
+        InstantiateAnswerOptions();
+    }
+
+
 
 }

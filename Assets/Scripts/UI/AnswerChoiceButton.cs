@@ -38,6 +38,10 @@ public class AnswerChoiceButton : MonoBehaviour
 
     void setButton()
     {
+        Button_Audio.onClick.AddListener(() =>{
+
+        });
+
         Button_Answer.onValueChanged.AddListener(delegate 
         {
              if(Button_Answer.isOn)
@@ -62,5 +66,12 @@ public class AnswerChoiceButton : MonoBehaviour
         set{
             isAnswer = value;
         }
+    }
+
+    void playAudio()
+    {
+        AudioClip_Audio = dataSingle.getAudioClip;
+        AudioSource_Main.clip = AudioClip_Audio;
+        AudioSource_Main.Play();
     }
 }
