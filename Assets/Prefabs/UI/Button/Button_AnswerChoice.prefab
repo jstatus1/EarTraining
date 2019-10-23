@@ -328,6 +328,8 @@ MonoBehaviour:
   Text_AnswerOption: {fileID: 4980391930133606667}
   Button_Audio: {fileID: 6542235876161346399}
   Button_Answer: {fileID: 4980391930634589748}
+  Color_Selected: {r: 0.06938988, g: 0.9245283, b: 0.02180491, a: 0.972549}
+  Color_Unselected: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
 --- !u!1 &6542235876161346393
 GameObject:
   m_ObjectHideFlags: 0
