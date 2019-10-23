@@ -171,21 +171,24 @@
                 AwakeQuestionSet();
                 return;
             }else{
-                  if(!Question_AnswerChoiceSize.activeSelf)
+                  if(!Question_AnswerChoiceSize.activeSelf && String.IsNullOrEmpty(currentCategoryKey))
                   {
                     Question_CategorySelector.SetActive(false);
                     Panel_Ready.SetActive(false);
                     Question_AnswerChoiceSize.SetActive(true);
                     Button_Back.gameObject.SetActive(true);
+                    Debug.Log("Jump");
+                    foreach(KeyValuePair<string, GameObject> question in Dictionary_AddedSelectorQuestions){ question.Value.SetActive(false);}
                     return;
                   }
 
                   if(Question_AnswerChoiceSize.activeSelf)
                   {
                     Question_AnswerChoiceSize.SetActive(false);
-                    loopThroughSelectableQuestions();
+                    loopThroughSelectableQuestions(true);
+                    return;
                   }
-
+                  loopThroughSelectableQuestions(true);
                 }
           }
 
@@ -199,20 +202,73 @@
               Button_Back.gameObject.SetActive(false);
               return;
             }
+            loopThroughSelectableQuestions(false);
           }
           
           ///<summary>
           //Loops through selectableQuestions
           ///</summary>
-          void loopThroughSelectableQuestions()
+          ///<params> forward = true 
+          string currentCategoryKey;
+          void loopThroughSelectableQuestions(bool forward)
           {
             string firstObj = Dictionary_AddedSelectorQuestions.Keys.First();
             string lastObj = Dictionary_AddedSelectorQuestions.Keys.Last();
-            Dictionary_AddedSelectorQuestions[firstObj].SetActive(true);
 
-            //create a var that stores the current scene
-            //loop through dictionary and see what comes next to the scene, 
-            //if there is no next then set the ready panel
+            Debug.Log($"firstObj: {firstObj}, lastObj:{lastObj}");
+
+            //forward
+            if(forward && String.IsNullOrEmpty(currentCategoryKey))
+            {
+              Dictionary_AddedSelectorQuestions[firstObj].SetActive(true);
+              currentCategoryKey = firstObj;
+              return;
+            }
+
+            if(currentCategoryKey.Equals(lastObj) && forward)
+            {
+              Dictionary_AddedSelectorQuestions[lastObj].SetActive(false);
+              Button_Forward.gameObject.SetActive(false);
+              Panel_Ready.SetActive(true);
+              return;
+            }
+
+            if(forward)
+            {
+              Dictionary_AddedSelectorQuestions[currentCategoryKey].SetActive(false);
+              KeyValuePair<string, GameObject> valuePair = Dictionary_AddedSelectorQuestions.Where(x => x.Value).SkipWhile(x => x.Key !=             
+                currentCategoryKey).Skip(1).FirstOrDefault();
+              Dictionary_AddedSelectorQuestions[valuePair.Key].SetActive(true);
+              currentCategoryKey = valuePair.Key;
+            }
+
+            //backwards
+            if(!forward && Panel_Ready.activeSelf)
+            {
+              Panel_Ready.SetActive(false);
+              Button_Forward.gameObject.SetActive(true);
+              Dictionary_AddedSelectorQuestions[lastObj].SetActive(true);
+              currentCategoryKey = lastObj;
+              return;
+            }
+
+            if(currentCategoryKey.Equals(firstObj) && !forward)
+            {
+              Dictionary_AddedSelectorQuestions[firstObj].SetActive(false);
+              Question_AnswerChoiceSize.SetActive(true);
+              currentCategoryKey = null;
+              return;
+            }
+
+            if(!forward)
+            {
+              KeyValuePair<string, GameObject> valuePair =Dictionary_AddedSelectorQuestions.TakeWhile(kvp => kvp.Key != currentCategoryKey)
+                .Last();
+                Dictionary_AddedSelectorQuestions[currentCategoryKey].SetActive(false);
+                Dictionary_AddedSelectorQuestions[valuePair.Key].SetActive(true);
+                currentCategoryKey = valuePair.Key;
+            }
+
           }
           
 
