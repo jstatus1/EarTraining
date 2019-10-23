@@ -38,7 +38,7 @@ public class QuizSetter: MonoBehaviour
 
         getSetAnswer();
         SetButtons();
-        //SetAnswerOptions();
+        SetAnswerOptions();
     }
 
     ///<summary>
