@@ -12,7 +12,7 @@ namespace Managers
 {
     public class QuizManager : MonoBehaviour
     {   
-
+        [SerializeField] AudioSource Audio_MainAudio;
         private static QuizManager _instance;
         public static QuizManager Instance{get{return _instance;}}
 
@@ -36,6 +36,13 @@ namespace Managers
         {
             int randomInt = rnd.Next(IntervalList.Count);
             return IntervalList[randomInt]; 
+        }
+
+        public AudioSource getMainAudio
+        {
+            get{
+                return Audio_MainAudio;
+            }
         }
         
     }

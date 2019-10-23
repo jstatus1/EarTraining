@@ -283,9 +283,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text_title: {fileID: 4764218366688746325}
   Button_Audio: {fileID: 4764218365684620923}
-  Color_Selected: {r: 0.1578655, g: 0.9528302, b: 0.06741722, a: 0}
-  Color_UnSelected: {r: 0.98823535, g: 0.9490197, b: 0.8705883, a: 0}
+  Color_Selected: {r: 0.1578655, g: 0.9528302, b: 0.06741722, a: 0.9843137}
+  Color_UnSelected: {r: 0.98823535, g: 0.9490197, b: 0.8705883, a: 0.9843137}
   _thisToggle: {fileID: 4764218365777697126}
+  _audioSource: {fileID: 0}
 --- !u!1 &4764218366688746331
 GameObject:
   m_ObjectHideFlags: 0

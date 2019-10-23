@@ -19,16 +19,26 @@ namespace UI.IndividualButton
         [SerializeField] Color Color_UnSelected;
         DataSingle DataSingle;
         [SerializeField] Toggle _thisToggle;
-        AudioSource _audioSource;
+        [SerializeField] AudioSource _audioSource;
         
 
         // Start is called before the first frame update
         void Start()
         {
-            _audioSource = FindObjectOfType<AudioSource>();
+            _audioSource = Managers.QuizManager.Instance.getMainAudio;
             //_thisToggle = gameObject.GetComponent<Toggle>();
             Text_title.text = DataSingle.Title.ToUpper();
-            _thisToggle.onValueChanged.AddListener(delegate{
+            SetUpButton();
+        }
+        
+        void SetUpButton()
+        {
+            Button_Audio.onClick.AddListener(() => {
+               _audioSource.clip = DataSingle.AudioClip;
+               _audioSource.Play(); 
+            });
+
+             _thisToggle.onValueChanged.AddListener(delegate{
                 if(_thisToggle.isOn)
                 {
                     _thisToggle.GetComponent<Image>().color = Color_Selected;
@@ -40,14 +50,6 @@ namespace UI.IndividualButton
                     //UI.QuizSetting.QuizSettingsListener.List_StoreSelection.Remove(DataSingle);
                 }
             }); 
-        }
-        
-        void SetUpButton()
-        {
-            Button_Audio.onClick.AddListener(() => {
-               _audioSource.clip = DataSingle.AudioClip;
-               _audioSource.PlayOneShot(_audioSource.clip); 
-            });
         }
 
         public DataSingle GetSetDataSingle

@@ -209,6 +209,10 @@
             string firstObj = Dictionary_AddedSelectorQuestions.Keys.First();
             string lastObj = Dictionary_AddedSelectorQuestions.Keys.Last();
             Dictionary_AddedSelectorQuestions[firstObj].SetActive(true);
+
+            //create a var that stores the current scene
+            //loop through dictionary and see what comes next to the scene, 
+            //if there is no next then set the ready panel
           }
           
 
