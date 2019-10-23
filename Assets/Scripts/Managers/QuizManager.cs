@@ -17,7 +17,7 @@ namespace Managers
         public static QuizManager Instance{get{return _instance;}}
 
         [Header("User Desired Quiz Training")]
-        public List<DataSingle> IntervalList = new List<DataSingle>();
+        public List<DataSingle> List_DataSingles = new List<DataSingle>();
         static System.Random rnd = new System.Random();
         public int NumOfChoices = 2;
 
@@ -32,10 +32,13 @@ namespace Managers
             DontDestroyOnLoad(this);
         }
 
-        public DataSingle getIntervalData()
+        public DataSingle getDataSingle
         {
-            int randomInt = rnd.Next(IntervalList.Count);
-            return IntervalList[randomInt]; 
+            get
+            {
+                int randomInt = rnd.Next(List_DataSingles.Count);
+                return List_DataSingles[randomInt];
+            } 
         }
 
         public AudioSource getMainAudio

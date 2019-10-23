@@ -410,10 +410,10 @@
 
           void transferSelectionsToListManager()
           {
-            Managers.QuizManager.Instance.IntervalList.Clear();
+            Managers.QuizManager.Instance.List_DataSingles.Clear();
             foreach(DataSingle single in List_SelectedDataSingles)
             {
-              Managers.QuizManager.Instance.IntervalList.Add(single);
+              Managers.QuizManager.Instance.List_DataSingles.Add(single);
             }
           }
           #endregion

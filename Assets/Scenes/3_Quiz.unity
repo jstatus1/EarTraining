@@ -179,34 +179,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 169103499925475451, guid: ebfef32ffa27902478d37f59172e055e,
-        type: 3}
-      propertyPath: IntervalList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 169103499925475451, guid: ebfef32ffa27902478d37f59172e055e,
-        type: 3}
-      propertyPath: IntervalList.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5c9304b7c37d96f42a38ca2da7bb2996,
-        type: 2}
-    - target: {fileID: 169103499925475451, guid: ebfef32ffa27902478d37f59172e055e,
-        type: 3}
-      propertyPath: IntervalList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: d8d4db30b5618d44d9716423d74f9018,
-        type: 2}
-    - target: {fileID: 169103499925475451, guid: ebfef32ffa27902478d37f59172e055e,
-        type: 3}
-      propertyPath: NumOfChoices
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 169103499925475451, guid: ebfef32ffa27902478d37f59172e055e,
-        type: 3}
-      propertyPath: IntervalList.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 740fb166392cdfc40a4b982b6f238249,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebfef32ffa27902478d37f59172e055e, type: 3}
 --- !u!1 &929829663
@@ -515,7 +487,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1610268364}
+      - m_Target: {fileID: 0}
         m_MethodName: SetAnswerOptions
         m_Mode: 1
         m_Arguments:
@@ -607,8 +579,7 @@ MonoBehaviour:
   Button_next: {fileID: 2068089642}
   Button_PlaySound: {fileID: 2294400183208804620}
   Button_Exit: {fileID: 2294400183143283441}
-  Button_Question: {fileID: 6823747151105268358, guid: 6deec49ace699b049910fc010e73ffc2,
-    type: 3}
+  Text_Question: {fileID: 7297887771964849841}
   Questions_Location: {fileID: 2294400182810743147}
   Prefab_AnswerChoice: {fileID: 6542235875892202249, guid: da32578976abac847a474e1d83785d15,
     type: 3}

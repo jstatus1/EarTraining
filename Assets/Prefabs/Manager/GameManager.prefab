@@ -171,5 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bedf33967a00144b9aa9fa2b91b4844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IntervalList: []
-  NumOfChoices: 0
+  Audio_MainAudio: {fileID: 148835993}
+  List_DataSingles:
+  - {fileID: 11400000, guid: 740fb166392cdfc40a4b982b6f238249, type: 2}
+  - {fileID: 11400000, guid: 5c9304b7c37d96f42a38ca2da7bb2996, type: 2}
+  NumOfChoices: 2

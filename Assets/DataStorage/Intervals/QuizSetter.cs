@@ -3,24 +3,25 @@ using System;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 
 ///<summary>
 ///The purpose of this class is to spawn quiz question, load the audio, and save
 // the right answer
 ///</sumary>
-public class QuizSetterV2: MonoBehaviour
+public class QuizSetter: MonoBehaviour
 {
+    [Header("Quiz Configuration")]
     [SerializeField] Button Button_next;
     [SerializeField] Button Button_PlaySound;
     [SerializeField] Button Button_Exit;
+    [SerializeField] TMP_Text Text_Question;
     [SerializeField] static AudioSource _mainAudio;
-
-    [SerializeField] GameObject Button_Question;
     [SerializeField] Transform Questions_Location;
     [SerializeField] GameObject Prefab_AnswerChoice;
     static System.Random rnd = new System.Random();
-    static AudioClip dataSound;
+    static AudioClip AudioClip_AnswerClip;
     string _answer;
     DataSingle _ansdata;
 
@@ -31,36 +32,35 @@ public class QuizSetterV2: MonoBehaviour
 
     void Start()
     {
-            _mainAudio = Managers.QuizManager.Instance.getMainAudio;
-            _answerChoicesAmt = Managers.QuizManager.Instance.NumOfChoices;
-            getSetRandomDataSingle();
-            SetButtons();
-            SetAnswerOptions();
+        _mainAudio = Managers.QuizManager.Instance.getMainAudio;
+        _answerChoicesAmt = Managers.QuizManager.Instance.NumOfChoices;
+
+
+        getSetAnswer();
+        SetButtons();
+        //SetAnswerOptions();
     }
 
     ///<summary>
     /// Gets Random DataSingle from the Manager Class and Loads it
     ///</<summary>
-    public void getSetRandomDataSingle()
+    public void getSetAnswer()
     {
-            //int randomNumber = rnd.Next(QuizManager.Instance.IntervalList.Count);
-            //return IntervalList[randomNumber];
+        _ansdata =  Managers.QuizManager.Instance.getDataSingle;
             
-            _ansdata =  Managers.QuizManager.Instance.getIntervalData();
-            
-            if(_ansdata.List_AudioClip.Count > 1)
-            {
-                int randomNumber = rnd.Next(_ansdata.List_AudioClip.Count);
-                dataSound = _ansdata.List_AudioClip[randomNumber];
-                _mainAudio.clip = dataSound;
-                //dataSound = data.AudioClip;
-            }else
-            {
-                dataSound = _ansdata.AudioClip;
-                //_mainAudio.clip = dataSound;
-            }
+        if(_ansdata.List_AudioClip.Count > 1)
+        {
+            int randomNumber = rnd.Next(_ansdata.List_AudioClip.Count);
+            AudioClip_AnswerClip = _ansdata.List_AudioClip[randomNumber];
+            _mainAudio.clip = AudioClip_AnswerClip;
+        }else
+        {
+            AudioClip_AnswerClip = _ansdata.AudioClip;
+            _mainAudio.clip = AudioClip_AnswerClip;
+        }
 
-            _answer = _ansdata.Title; 
+        _answer = _ansdata.Title; 
+        Text_Question.text = $"What {_ansdata.DataType.ToString().TrimEnd('s')} is this?";
     }
 
     ///<summary>
@@ -70,15 +70,15 @@ public class QuizSetterV2: MonoBehaviour
     {
             Button_next.onClick.AddListener(() => {
                 //go to the next slide
-                getSetRandomDataSingle();
+                getSetAnswer();
             });
             Button_PlaySound.onClick.AddListener(() => {
                 
                 if(_mainAudio.clip == null)
                 {
-                    getSetRandomDataSingle();
+                    getSetAnswer();
                 }else{
-                    _mainAudio.clip = dataSound;
+                    _mainAudio.clip = AudioClip_AnswerClip;
                     _mainAudio.Play();
                 }
             });
@@ -93,11 +93,11 @@ public class QuizSetterV2: MonoBehaviour
     string LoopThroughList()
     {
             string str = "";
-            if(Managers.QuizManager.Instance.IntervalList.Count == 0)
+            if(Managers.QuizManager.Instance.List_DataSingles.Count == 0)
             {
                 return "Nothing";
             }
-            foreach(DataSingle i in  Managers.QuizManager.Instance.IntervalList)
+            foreach(DataSingle i in  Managers.QuizManager.Instance.List_DataSingles)
             {
                 str += i.Title + " ";
             }
@@ -115,7 +115,7 @@ public class QuizSetterV2: MonoBehaviour
         while(answerChoices.Count < _answerChoicesAmt)
         {
             //query all that that was in the User's Given Choice and not the answer
-            var result = Managers.QuizManager.Instance.IntervalList.Where(p => !answerChoices.Any(p2 => p2 == p));
+            var result = Managers.QuizManager.Instance.List_DataSingles.Where(p => !answerChoices.Any(p2 => p2 == p));
             if(result != null)
             {
                 answerChoices.Add(result.First());
