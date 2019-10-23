@@ -154,6 +154,10 @@ public class QuizSetter: MonoBehaviour
         {
             GameObject optionsBtn =  Instantiate(Prefab_AnswerChoice) as GameObject;
             optionsBtn.GetComponent<AnswerChoiceButton>().setDataSingle = answerChoice;
+            if(answerChoice.Equals(_ansdata))
+            {
+                optionsBtn.GetComponent<AnswerChoiceButton>().getSetIsAnswer = true;
+            }
             optionsBtn.transform.SetParent(Questions_Location, false);
         }
     }

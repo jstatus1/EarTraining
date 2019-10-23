@@ -16,7 +16,7 @@ public class AnswerChoiceButton : MonoBehaviour
     AudioClip AudioClip_Audio;
     AudioSource AudioSource_Main;
 
-    bool isAnswer;
+    bool isAnswer = false;
 
     public DataSingle setDataSingle
     {
