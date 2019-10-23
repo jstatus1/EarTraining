@@ -8,18 +8,23 @@ using UnityEngine;
 public class CollectionsStorage : MonoBehaviour
 {
     [SerializeField] List<DataCollection> ListCollections;
+    
+    public void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     public List<DataCollection> getListCollections()
     {
         return ListCollections;
     }
 
-    public DataCollection grabCollection(string search)
+    public DataCollection grabCollection(DataTypes dataTypes)
     {
         DataCollection foundCollection = new DataCollection();
         foreach(DataCollection collection in ListCollections)
         {
-            if(search.Equals(collection.dataTypes.ToString()))
+            if(dataTypes.Equals(collection.dataTypes))
             {
                 foundCollection = collection;
             }

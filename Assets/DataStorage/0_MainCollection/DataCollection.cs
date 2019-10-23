@@ -12,4 +12,6 @@ public class DataCollection : ScriptableObject
     public string Information;
     public Image Image;
 
+
+    
 }

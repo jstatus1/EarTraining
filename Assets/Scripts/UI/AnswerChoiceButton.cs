@@ -12,24 +12,33 @@ public class AnswerChoiceButton : MonoBehaviour
     [SerializeField] TMP_Text Text_AnswerOption;
     [SerializeField] Button Button_Audio;
     [SerializeField] Toggle Button_Answer;
-
+    DataSingle dataSingle;
     AudioClip AudioClip_Audio;
     AudioSource AudioSource_Main;
 
-    bool answer;
+    bool isAnswer;
+
+    public DataSingle setDataSingle
+    {
+        set{
+            dataSingle = value;
+            Text_AnswerOption.text = dataSingle.Title;
+            AudioClip_Audio = dataSingle.getAudioClip;
+        }
+    }
 
     void Start()
     {
         AudioSource_Main = Managers.QuizManager.Instance.getMainAudio; 
     }
 
-    public bool getSetAnswer
+    public bool getSetIsAnswer
     {
         get{
-            return answer;
+            return isAnswer;
         }
         set{
-            answer = value;
+            isAnswer = value;
         }
     }
 }

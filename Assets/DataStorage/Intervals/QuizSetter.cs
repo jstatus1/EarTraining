@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ public class QuizSetter: MonoBehaviour
     [SerializeField] static AudioSource _mainAudio;
     [SerializeField] Transform Questions_Location;
     [SerializeField] GameObject Prefab_AnswerChoice;
+    [SerializeField] CollectionsStorage CollectionsStorage;
     static System.Random rnd = new System.Random();
     static AudioClip AudioClip_AnswerClip;
     string _answer;
@@ -27,8 +29,6 @@ public class QuizSetter: MonoBehaviour
 
     int _answerChoicesAmt = 2;
 
-    //TODO: Replace in the future
-    string [] Intervals = {"Perfect 5th, Perfect 4th, Perfect Octave, Major 2nd, Major 3rd"};
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class QuizSetter: MonoBehaviour
 
         getSetAnswer();
         SetButtons();
-        SetAnswerOptions();
+        InstantiateAnswerOptions();
     }
 
     ///<summary>
@@ -73,14 +73,8 @@ public class QuizSetter: MonoBehaviour
                 getSetAnswer();
             });
             Button_PlaySound.onClick.AddListener(() => {
-                
-                if(_mainAudio.clip == null)
-                {
-                    getSetAnswer();
-                }else{
-                    _mainAudio.clip = AudioClip_AnswerClip;
-                    _mainAudio.Play();
-                }
+                _mainAudio.clip = AudioClip_AnswerClip;
+                _mainAudio.Play();
             });
             Button_Exit.onClick.AddListener(() => {
                 //show exit panel confirmation
@@ -105,32 +99,63 @@ public class QuizSetter: MonoBehaviour
     }
 
     ///<summary>
-    /// Sets The Answer Choices through random shuffle
+    /// Shuffle The Answer Choices through random shuffle
+    /// Returns A List<DataSingle>
     ///</summary>
-    public void SetAnswerOptions()
+    public List<DataSingle> SetAnswerOptionsList()
     {
         List<DataSingle> answerChoices = new List<DataSingle>();
         answerChoices.Add(_ansdata);
+        DataTypes dataTypes = _ansdata.DataType;
         
+        
+        DataCollection alternativeAnswerCollection = CollectionsStorage.GetComponent<CollectionsStorage>().grabCollection(dataTypes);
+        
+        //set answer and place inside list
         while(answerChoices.Count < _answerChoicesAmt)
         {
             //query all that that was in the User's Given Choice and not the answer
-            var result = Managers.QuizManager.Instance.List_DataSingles.Where(p => !answerChoices.Any(p2 => p2 == p));
-            if(result != null)
+            var result = Managers.QuizManager.Instance.List_DataSingles.Where(p => (!answerChoices.Any(p2 => (p2 == p))) && p.DataType.Equals(dataTypes));
+            
+            if(result.Any())
             {
                 answerChoices.Add(result.First());
             }else{
-                //TODO: Replace with not hardcoded choices
-                //answerChoices.Add();
-                break;
+                
+                var altResult = alternativeAnswerCollection.List_DataSingles.Where(p => (!answerChoices
+                             .Any(p2 => (p2 == p)) && (p.DataType.Equals(dataTypes))));
+                
+                if(altResult.Any())
+                {
+                    answerChoices.Add(altResult.First());
+                    break;
+                }else{
+                    var anyResult = alternativeAnswerCollection.List_DataSingles.Where(p => (!answerChoices
+                             .Any(p2 => (p2 == p))));
+                    answerChoices.Add(altResult.First());
+                    break;
+                }
+                
             }
         }
 
-        foreach(DataSingle i in answerChoices)
-        {
-            Debug.Log(i.Title);
-        }
-
-        
+        //shuffle list
+        answerChoices.Shuffle();
+        return answerChoices;
     }
+
+    ///<summary>
+    ///creates the option
+    ///</summary>
+    public void InstantiateAnswerOptions()
+    {
+        List<DataSingle> List_AnswerOptions = SetAnswerOptionsList();
+        foreach(DataSingle answerChoice in List_AnswerOptions)
+        {
+            GameObject optionsBtn =  Instantiate(Prefab_AnswerChoice) as GameObject;
+            optionsBtn.GetComponent<AnswerChoiceButton>().setDataSingle = answerChoice;
+            optionsBtn.transform.SetParent(Questions_Location, false);
+        }
+    }
+
 }
