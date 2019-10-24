@@ -5,35 +5,47 @@ using UnityEngine.UI;
 
 public class AnswerNotifier : MonoBehaviour
 {
-    [SerializeField] GameObject CorrectObj;
+    [SerializeField] Button CorrectObj;
     [SerializeField] AudioClip correctSound;
     [SerializeField] AudioClip incorrectSound;
-    [SerializeField] GameObject IncorrectObj;
+    [SerializeField] Button IncorrectObj;
+    [SerializeField] Button BlockPanel;
     AudioSource mainAudioSource;
 
     void Start()
     {
         mainAudioSource = Managers.QuizManager.Instance.getMainAudio;
     }
+
+    void setButton()
+    {
+        BlockPanel.onClick.AddListener(() => {
+            BlockPanel.gameObject.SetActive(false);
+            CorrectObj.gameObject.SetActive(false);
+            IncorrectObj.gameObject.SetActive(false);
+
+        });
+    }
     
     public void notifier(bool correct)
     {
+        BlockPanel.gameObject.SetActive(true);
         if(correct)
         {
-            CorrectObj.SetActive(true);
+
+            CorrectObj.gameObject.SetActive(true);
             mainAudioSource.clip = correctSound;
             mainAudioSource.Play();
             Debug.Log("Correct");
-            
-            CorrectObj.SetActive(false);
         }
-        else{
-            IncorrectObj.SetActive(true);
+        else
+        {
+            IncorrectObj.gameObject.SetActive(true);
             mainAudioSource.clip = incorrectSound;
             mainAudioSource.Play();
             Debug.Log("Wrong");
-            IncorrectObj.SetActive(false);
         }
+        
     }
 
 
