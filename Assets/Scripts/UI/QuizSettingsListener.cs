@@ -59,7 +59,7 @@
 
           void Awake()
           {
-            //Set the Questions and Buttons to comploy 
+            Managers.QuizManager.Instance.clearDataList(); 
             AwakeQuestionSet();
           }
           
@@ -229,6 +229,7 @@
             {
               Dictionary_AddedSelectorQuestions[lastObj].SetActive(false);
               Button_Forward.gameObject.SetActive(false);
+              Text_SelectedDataResult.text = DisplayUserSelections();
               Panel_Ready.SetActive(true);
               return;
             }
@@ -331,7 +332,7 @@
           //Listen To Adding or Removing Selections
           public void listenToSelections()
           {
-              Text_SelectedDataResult.text = DisplayUserSelections();
+             
               //TODO: Abstract this part of the code away
               //adds a listener to the list to see when things are added or removed
               //updates the text selected
@@ -347,7 +348,7 @@
                   }
 
                   //ReadyGameListener.Text_Selection.text = DisplayUserSelections();
-                  Text_SelectedDataResult.text = DisplayUserSelections();
+                  
                 }
               );
           }
@@ -404,7 +405,9 @@
             }
             
             transferSelectionsToListManager();
-
+            List_SelectedDataSingles.Clear();
+            List_CategorySelection.Clear();
+            Dictionary_AddedSelectorQuestions.Clear();
             SceneManager.LoadScene("3_Quiz");
           }
 

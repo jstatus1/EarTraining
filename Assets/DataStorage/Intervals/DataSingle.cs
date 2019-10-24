@@ -14,6 +14,19 @@ public enum DataTypes
     
 }
 
+public enum ChordType
+{
+    None,
+    Major,
+    Minor,
+    Diminshed,
+    Augmented, 
+    Major7th,
+    Minor7th,
+    Dominant7th,
+    Suspended
+}
+
 public enum InstrumentTypes
 {
     Guitar,
@@ -25,10 +38,13 @@ public enum InstrumentTypes
 public class DataSingle : ScriptableObject
 {
     public DataTypes DataType;
+    public ChordType ChordType;
     public InstrumentTypes InstrumentTypes;
     public string Title;
     public AudioClip AudioClip;
     public List<AudioClip> List_AudioClip;
+
+    [TextArea]
     public string Information;
     public Image Image;
 

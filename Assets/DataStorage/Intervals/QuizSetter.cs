@@ -33,6 +33,11 @@ public class QuizSetter: MonoBehaviour
     int _answerChoicesAmt = 2;
 
 
+    void Awake()
+    {
+        CollectionsStorage = GameObject.FindObjectOfType<CollectionsStorage>();
+    }
+
     void Start()
     {
         _mainAudio = Managers.QuizManager.Instance.getMainAudio;
@@ -96,6 +101,12 @@ public class QuizSetter: MonoBehaviour
                 var builder = new UM_NativeDialogBuilder(title, message);
                 builder.SetPositiveButton("Okay", () => {
                     SceneManager.LoadScene("0_MenuScreen");
+                    Managers.QuizManager.Instance.clearDataList();
+                });
+
+                builder.SetNegativeButton("Nah", () =>
+                {
+                    
                 });
 
                 var dialog = builder.Build();

@@ -15,8 +15,22 @@ MonoBehaviour:
   dataTypes: 1
   Title_Collection: Chords
   List_DataSingles:
+  - {fileID: 11400000, guid: 46a0b1bb60e6e6145b035bbee476c763, type: 2}
+  - {fileID: 11400000, guid: 6a3f5bf2be7265647a6f3a134f15f751, type: 2}
   - {fileID: 11400000, guid: 740fb166392cdfc40a4b982b6f238249, type: 2}
+  - {fileID: 11400000, guid: 51bde7253242ee04983a3438e34429da, type: 2}
+  - {fileID: 11400000, guid: 44b3631b85de1904ab72d90e87217c84, type: 2}
   - {fileID: 11400000, guid: 64b40bfcc233c5a4e8e6402670fd25bf, type: 2}
+  - {fileID: 11400000, guid: 2ad8a14426f0ff5458830f3fa4521675, type: 2}
+  - {fileID: 11400000, guid: f631c11a936a1ba4a8ef911494884a10, type: 2}
+  - {fileID: 11400000, guid: c9415a5db34082946894b8605ded6bc7, type: 2}
+  - {fileID: 11400000, guid: 14b1057cfd44a6e4fba7f36e1fe68499, type: 2}
   - {fileID: 11400000, guid: 1d603f5560446f040bbdb6230ae1a679, type: 2}
-  Information: 
+  - {fileID: 11400000, guid: 8ee8ef134590d854cb1950753532f290, type: 2}
+  - {fileID: 11400000, guid: 127005413aa7607408d2da699bb3f8a9, type: 2}
+  - {fileID: 11400000, guid: 2ba83e12f0140424fa65afff5ee374f2, type: 2}
+  Information: 'A Chord, in music, is any harmonic set of pitches consisting of multiple
+    notes that are heard as if sounding simultaneously. Chords are built off of one
+    note, called the root note. While only two notes are needed for a chord, most
+    chords will have athree notes called triads. '
   Image: {fileID: 0}

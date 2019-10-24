@@ -1555,7 +1555,7 @@ MonoBehaviour:
   m_Content: {fileID: 1783485479}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 2
+  m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -3379,7 +3379,7 @@ MonoBehaviour:
   Panel_Ready: {fileID: 1527783318}
   Question_CategorySelector: {fileID: 21728047}
   Question_AnswerChoiceSize: {fileID: 617936667}
-  Prefab_QuestionSelection: {fileID: 7645632925466561444, guid: fe087dd390baf9040b144d99e4d679e4,
+  Prefab_QuestionSelection: {fileID: 6196012225095140600, guid: 7dc0009bdd414b84d87881c7c14ce7eb,
     type: 3}
   Location_PanelQuestion: {fileID: 1629978239}
   Prefab_CollectionButton: {fileID: 411109678952006593, guid: 29ab6f04e15496d4abbedc823c9a1057,

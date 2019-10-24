@@ -41,6 +41,11 @@ namespace Managers
             } 
         }
 
+        public void clearDataList()
+        {
+            List_DataSingles.Clear();
+        }
+
         public AudioSource getMainAudio
         {
             get{

@@ -9,9 +9,10 @@ public class DataCollection : ScriptableObject
     public string Title_Collection;
     public List<DataSingle> List_DataSingles;
 
+    [TextArea]
     public string Information;
     public Image Image;
 
 
-    
+
 }

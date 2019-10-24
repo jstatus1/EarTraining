@@ -39,7 +39,7 @@ public class AnswerChoiceButton : MonoBehaviour
     void setButton()
     {
         Button_Audio.onClick.AddListener(() =>{
-
+            playAudio();
         });
 
         Button_Answer.onValueChanged.AddListener(delegate 

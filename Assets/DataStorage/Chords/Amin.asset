@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Amin
   m_EditorClassIdentifier: 
   DataType: 1
+  ChordType: 2
+  InstrumentTypes: 0
   Title: Amin Chord
   AudioClip: {fileID: 8300000, guid: 515e5ae8818a064458c7183205ee1ce6, type: 3}
   List_AudioClip: []

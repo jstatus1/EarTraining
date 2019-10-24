@@ -22,5 +22,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cc56a790f75f4dc42be5266297db26b0, type: 3}
   - {fileID: 8300000, guid: b132c3c7e5090fc4dbcc74fb2d4c50c3, type: 3}
   - {fileID: 8300000, guid: 4a74df75fef10424bb05e4874742c69c, type: 3}
-  Information: 
+  Information: An octave is one complete lap of the Note Circle. Common songs would
+    be somewhere over the rainbow, singing in the rain or my sharona.
   Image: {fileID: 0}

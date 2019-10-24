@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Perfect 5th
   m_EditorClassIdentifier: 
   DataType: 0
+  InstrumentTypes: 0
   Title: Perfect 5th
   AudioClip: {fileID: 0}
   List_AudioClip:
@@ -20,5 +21,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f91f360bb60ce094bba0c64cc3009119, type: 3}
   - {fileID: 8300000, guid: a2f32c155017c6249ba27a471a73e0af, type: 3}
   - {fileID: 8300000, guid: d6bfde1fa77994c48a59dc9d747153b4, type: 3}
-  Information: 
+  Information: Recommended songs are Twinkle Twinkle Little Star or the Star Wars
+    Theme.
   Image: {fileID: 0}

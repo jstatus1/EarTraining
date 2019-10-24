@@ -18,7 +18,7 @@ public class MainPageControl : MonoBehaviour
     void SetButton()
     {
         Button_EarTraining.onClick.AddListener(() => {
-            SceneManager.LoadScene("3_PreConfiguration_EarTraining");
+            SceneManager.LoadScene("2_PreConfigurationQuiz");
         });
     }
 }

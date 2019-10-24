@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: G Chord
   m_EditorClassIdentifier: 
   DataType: 1
+  ChordType: 1
   InstrumentTypes: 0
   Title: G Chord
-  AudioClip: {fileID: 0}
+  AudioClip: {fileID: 8300000, guid: 86a5ce423bce93c4e8d98b17ddf4ff73, type: 3}
   List_AudioClip: []
   Information: 
   Image: {fileID: 0}
