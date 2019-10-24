@@ -15,7 +15,7 @@ MonoBehaviour:
   DataType: 1
   ChordType: 5
   InstrumentTypes: 0
-  Title: 
+  Title: A7 Chord
   AudioClip: {fileID: 8300000, guid: e25e706f32847664d89dbf35bc671ab2, type: 3}
   List_AudioClip: []
   Information: 

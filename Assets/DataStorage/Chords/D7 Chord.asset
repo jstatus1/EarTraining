@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: D7 Chord
   m_EditorClassIdentifier: 
   DataType: 0
-  ChordType: 0
+  ChordType: 5
   InstrumentTypes: 0
-  Title: 
-  AudioClip: {fileID: 0}
+  Title: D7 Chord
+  AudioClip: {fileID: 8300000, guid: 449570594c76ab2478b5069ce5294f4c, type: 3}
   List_AudioClip: []
   Information: 
   Image: {fileID: 0}

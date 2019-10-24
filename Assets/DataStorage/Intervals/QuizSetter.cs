@@ -25,6 +25,7 @@ public class QuizSetter: MonoBehaviour
     [SerializeField] GameObject Prefab_AnswerChoice;
     [SerializeField] CollectionsStorage CollectionsStorage;
     [SerializeField] ToggleGroup ToggleGroup;
+    [SerializeField] AnswerNotifier answerNotifier;
     static System.Random rnd = new System.Random();
     static AudioClip AudioClip_AnswerClip;
     string _answer;
@@ -201,27 +202,11 @@ public class QuizSetter: MonoBehaviour
 
     void checkAnswer()
     {          
-
-        Debug.Log($"Answer: {ToggleGroup.ActiveToggles().First().GetComponentInParent<AnswerChoiceButton>().getSetIsAnswer}");
         if(ToggleGroup.ActiveToggles().First().GetComponentInParent<AnswerChoiceButton>().getSetIsAnswer)
         {
-            string title = "Correct";
-            string message = "Good Job";
-            var builder = new UM_NativeDialogBuilder(title, message);
-            builder.SetPositiveButton("Okay", () => {
-                            
-            });
-            var dialog = builder.Build();
-            dialog.Show();
+            answerNotifier.notifier(true);
         }else{
-            string title = "Incorrect";
-            string message = "Please Try Again";
-            var builder = new UM_NativeDialogBuilder(title, message);
-            builder.SetPositiveButton("Okay", () => {
-                            
-            });
-            var dialog = builder.Build();
-            dialog.Show();
+            answerNotifier.notifier(false);
             return;
         }
         getSetAnswer();
