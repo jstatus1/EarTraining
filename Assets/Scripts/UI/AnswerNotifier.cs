@@ -10,11 +10,11 @@ public class AnswerNotifier : MonoBehaviour
     [SerializeField] AudioClip incorrectSound;
     [SerializeField] Button IncorrectObj;
     [SerializeField] Button BlockPanel;
-    AudioSource mainAudioSource;
+
+    [SerializeField] AudioSource mainAudioSource;
 
     void Start()
     {
-        mainAudioSource = Managers.QuizManager.Instance.getMainAudio;
         setButton();
     }
 
@@ -33,9 +33,9 @@ public class AnswerNotifier : MonoBehaviour
         BlockPanel.gameObject.SetActive(true);
         if(correct)
         {
-            CorrectObj.gameObject.SetActive(true);
             mainAudioSource.clip = correctSound;
             mainAudioSource.Play();
+            CorrectObj.gameObject.SetActive(true);
             Debug.Log("Correct");
         }
         else

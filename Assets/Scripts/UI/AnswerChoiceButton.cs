@@ -17,7 +17,7 @@ public class AnswerChoiceButton : MonoBehaviour
     DataSingle dataSingle;
     AudioClip AudioClip_Audio;
     AudioSource AudioSource_Main;
-
+    Button Button_CheckAnswer;
 
     bool isAnswer = false;
     
@@ -27,6 +27,13 @@ public class AnswerChoiceButton : MonoBehaviour
             dataSingle = value;
             Text_AnswerOption.text = dataSingle.Title;
             AudioClip_Audio = dataSingle.getAudioClip;
+        }
+    }
+
+    public Button setCheckAnswerButton
+    {
+        set{
+            Button_CheckAnswer = value;
         }
     }
 
@@ -47,8 +54,13 @@ public class AnswerChoiceButton : MonoBehaviour
              if(Button_Answer.isOn)
                 {
                     Button_Answer.GetComponent<Image>().color = Color_Selected;
+                    //set check answer button off
+                    Button_CheckAnswer.gameObject.SetActive(true);
+
                 }else{
                     Button_Answer.GetComponent<Image>().color = Color_Unselected;
+                    //set check answer button off
+                    Button_CheckAnswer.gameObject.SetActive(false);
                 }
         });
     }

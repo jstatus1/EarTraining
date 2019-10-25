@@ -194,6 +194,7 @@ public class QuizSetter: MonoBehaviour
         {
             GameObject optionsBtn =  Instantiate(Prefab_AnswerChoice) as GameObject;
             optionsBtn.GetComponent<AnswerChoiceButton>().setDataSingle = answerChoice;
+            optionsBtn.GetComponent<AnswerChoiceButton>().setCheckAnswerButton = Button_next;
             if(answerChoice.Equals(_ansdata))
             {
                 optionsBtn.GetComponent<AnswerChoiceButton>().getSetIsAnswer = true;
@@ -209,6 +210,7 @@ public class QuizSetter: MonoBehaviour
         if(ToggleGroup.ActiveToggles().First().GetComponentInParent<AnswerChoiceButton>().getSetIsAnswer)
         {
             answerNotifier.notifier(true);
+            Button_next.gameObject.SetActive(false);
         }else{
             answerNotifier.notifier(false);
             return;
