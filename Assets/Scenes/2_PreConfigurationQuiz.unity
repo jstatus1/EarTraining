@@ -3138,6 +3138,11 @@ PrefabInstance:
       propertyPath: SceneToReturnTo
       value: 0_MenuScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 3412038827409067061, guid: d655b3d728a2c8f4faeb7e21aef46f11,
+        type: 3}
+      propertyPath: quizSettingsListener
+      value: 
+      objectReference: {fileID: 7297887772050921678}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d655b3d728a2c8f4faeb7e21aef46f11, type: 3}
 --- !u!224 &7297887771294200938

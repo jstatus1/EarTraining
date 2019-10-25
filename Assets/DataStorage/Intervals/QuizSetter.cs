@@ -93,8 +93,7 @@ public class QuizSetter: MonoBehaviour
                 checkAnswer();
             });
             Button_PlaySound.onClick.AddListener(() => {
-                _mainAudio.clip = AudioClip_AnswerClip;
-                _mainAudio.Play();
+                playSound();
             });
             Button_Exit.onClick.AddListener(() => {
                 string title = "Return Home";
@@ -115,6 +114,11 @@ public class QuizSetter: MonoBehaviour
             });
     }
 
+    public void playSound()
+    {
+        _mainAudio.clip = AudioClip_AnswerClip;
+        _mainAudio.Play();
+    }
     ///<summary>
     ///
     ///</summary>

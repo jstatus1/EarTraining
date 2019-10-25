@@ -24,7 +24,7 @@ public class AnswerNotifier : MonoBehaviour
             BlockPanel.gameObject.SetActive(false);
             CorrectObj.gameObject.SetActive(false);
             IncorrectObj.gameObject.SetActive(false);
-
+            
         });
     }
     

@@ -60,6 +60,8 @@
           void Awake()
           {
             Managers.QuizManager.Instance.clearDataList(); 
+            Dictionary_AddedSelectorQuestions.Clear();
+            List_CategorySelection.Clear();
             AwakeQuestionSet();
           }
           
@@ -318,15 +320,24 @@
                       //remove from the scene
                       GameObject.Destroy(Dictionary_AddedSelectorQuestions[p.Title_Collection]);
                       Dictionary_AddedSelectorQuestions.Remove(p.Title_Collection);
-
-                      
-                      
                       Debug.Log($"Amount in Dictionary: {Dictionary_AddedSelectorQuestions.Count}");
                     }
                   }
                 }
               );
           } 
+
+          ///<summary>
+          /// When you leave the scene
+          ///</summary>
+          public void OnExit()
+          {
+            foreach(KeyValuePair<string,GameObject> i in Dictionary_AddedSelectorQuestions)
+            {
+              GameObject.Destroy(Dictionary_AddedSelectorQuestions[i.Key]);
+            }
+            Dictionary_AddedSelectorQuestions.Clear();
+          }
 
           
           //Listen To Adding or Removing Selections
