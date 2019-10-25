@@ -176,7 +176,7 @@ MonoBehaviour:
   correctSound: {fileID: 8300000, guid: 44202f4821161654f9e3279079224b03, type: 3}
   incorrectSound: {fileID: 8300000, guid: 42a492eb8608c8443bb6b96675806e8c, type: 3}
   IncorrectObj: {fileID: 1056706760}
-  BlockPanel: {fileID: 0}
+  BlockPanel: {fileID: 1047820832}
 --- !u!1 &929829663
 GameObject:
   m_ObjectHideFlags: 0

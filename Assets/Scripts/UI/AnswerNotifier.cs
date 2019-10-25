@@ -15,6 +15,7 @@ public class AnswerNotifier : MonoBehaviour
     void Start()
     {
         mainAudioSource = Managers.QuizManager.Instance.getMainAudio;
+        setButton();
     }
 
     void setButton()
@@ -32,7 +33,6 @@ public class AnswerNotifier : MonoBehaviour
         BlockPanel.gameObject.SetActive(true);
         if(correct)
         {
-
             CorrectObj.gameObject.SetActive(true);
             mainAudioSource.clip = correctSound;
             mainAudioSource.Play();

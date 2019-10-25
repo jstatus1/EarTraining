@@ -16,7 +16,7 @@ MonoBehaviour:
   ChordType: 1
   InstrumentTypes: 0
   Title: G Chord
-  AudioClip: {fileID: 8300000, guid: 86a5ce423bce93c4e8d98b17ddf4ff73, type: 3}
+  AudioClip: {fileID: 8300000, guid: b588e63a23823b844a02dede2adbd1f7, type: 3}
   List_AudioClip: []
   Information: 
   Image: {fileID: 0}
